@@ -1,6 +1,7 @@
 import streamlit as st
 
-st.set_page_config(layout="centered", initial_sidebar_state="collapsed", page_icon='🛰️')
+st.set_page_config(layout="centered",
+                   initial_sidebar_state="collapsed", page_icon='🛰️')
 
 st.markdown(
     """

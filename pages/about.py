@@ -1,6 +1,7 @@
 import streamlit as st
 
-st.set_page_config(layout="centered", initial_sidebar_state="collapsed", page_icon='🛰️')
+st.set_page_config(layout="centered",
+                   initial_sidebar_state="collapsed", page_icon='🛰️')
 
 st.markdown(
     """
@@ -24,29 +25,36 @@ with col1:
         st.markdown("""#### Olivier L. de Weck \n *Professor*: Apollo Program Professor of Astronautics, Professor of Engineering Systems, ESL Faculty Director""")
     with st.container(height=500, border=True):
         st.image("./images/julia.jpg", use_container_width=True)
-        st.write("#### Julia Milton \n *PhD 2023, Aeronautics and Astronautics*: SEAri")
+        st.write(
+            "#### Julia Milton \n *PhD 2023, Aeronautics and Astronautics*: SEAri")
     with st.container(height=500, border=True):
         st.image("./images/nadiak.png", use_container_width=True)
-        st.write("#### Nadia Khan \n *Graduate Researcher*: Technology Policy Program Masters Candidate" )
+        st.write(
+            "#### Nadia Khan \n *Graduate Researcher*: Technology Policy Program Masters Candidate")
 
 with col2:
     with st.container(height=500, border=True):
         st.image("./images/afreen.jpeg", use_container_width=True)
-        st.write("#### Afreen Siddiqi \n *Research Scientist*: Strategic Engineering Research Group" )
+        st.write(
+            "#### Afreen Siddiqi \n *Research Scientist*: Strategic Engineering Research Group")
     with st.container(height=500, border=True):
         st.image("./images/alex.jpg", use_container_width=True)
-        st.write("#### Alex Koenig \n *SM 2023, Aerospace*: Strategic Engineering Research Group")
+        st.write(
+            "#### Alex Koenig \n *SM 2023, Aerospace*: Strategic Engineering Research Group")
     with st.container(height=500, border=True):
         st.image("./images/hailey.jpg", use_container_width=True)
-        st.write("#### Hailey D Polson \n *Undergraduate Student*: Majoring in Aerospace Engineering (16)")
+        st.write(
+            "#### Hailey D Polson \n *Undergraduate Student*: Majoring in Aerospace Engineering (16)")
 
 with col3:
     with st.container(height=500, border=True):
         st.image("./images/george.jpeg", use_container_width=True)
-        st.markdown("""#### George Lordos \n *Research Scientist*: Strategic Engineering Research Group""")
+        st.markdown(
+            """#### George Lordos \n *Research Scientist*: Strategic Engineering Research Group""")
     with st.container(height=500, border=True):
         st.image("./images/chloe.jpg", use_container_width=True)
-        st.write("#### Chloe Gentgen \n *Graduate Researcher*: Strategic Engineering Research Group, Ph.D. Candidate, MIT AeroAstro" )
+        st.write("#### Chloe Gentgen \n *Graduate Researcher*: Strategic Engineering Research Group, Ph.D. Candidate, MIT AeroAstro")
     with st.container(height=500, border=True):
         st.image("./images/roderick.jpg", use_container_width=True)
-        st.write("#### Roderick Huang \n *MEng Student*: Double majored in Mathematics (18) and Computer Science (6-3)")
+        st.write(
+            "#### Roderick Huang \n *MEng Student*: Double majored in Mathematics (18) and Computer Science (6-3)")

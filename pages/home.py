@@ -1,8 +1,9 @@
 import streamlit as st
 
-st.set_page_config(layout="wide", page_icon='🛰️', initial_sidebar_state=st.session_state.sidebar_state)
+st.set_page_config(layout="wide", page_icon='🛰️',
+                   initial_sidebar_state=st.session_state.sidebar_state)
 
-_, body, _ = st.columns([1,6,1])
+_, body, _ = st.columns([1, 6, 1])
 with body:
     st.markdown("""
                 <div style='text-align: center; font-size: 500%;font-family: sans-serif;'><b>ASTRA</b></div>
@@ -11,7 +12,7 @@ with body:
                 \n
                 """, unsafe_allow_html=True)
     st.text("")
-    _, start_btn, about_btn, _ = st.columns([2,2,2,2])
+    _, start_btn, about_btn, _ = st.columns([2, 2, 2, 2])
     with start_btn:
         if st.button('Get started', type='primary', use_container_width=True):
             st.session_state.sidebar_state = 'expanded' if st.session_state.sidebar_state == 'collapsed' else 'collapsed'
@@ -24,7 +25,7 @@ with body:
                 ***
                 <p style='text-align: center; font-size: 120%;font-family: monospace;'>Collaboration between</p>
                 """, unsafe_allow_html=True)
-    _, img, _ = st.columns([1,1,1])
+    _, img, _ = st.columns([1, 1, 1])
     with img:
         st.image('images/logo.png', width=False)
     st.markdown('***')
@@ -33,7 +34,7 @@ with body:
         st.markdown("""
                 <p style='text-align: center; font-size: 100%;font-family: monospace;'>DATA ANALYSIS</p>
                 """, unsafe_allow_html=True)
-        explanation, img, = st.columns([3,4])
+        explanation, img, = st.columns([3, 4])
         with explanation:
             st.markdown("""
                         #### Retrieve NASA Technology Project Data
@@ -43,7 +44,7 @@ with body:
                 st.switch_page('pages/data.py')
         with img:
             st.image("images/placeholder.webp")
-        
+
     with st.container(border=True):
         st.markdown("""
                 <p style='text-align: center; font-size: 100%;font-family: monospace;'>PORTFOLIO THEORY</p>
@@ -53,8 +54,10 @@ with body:
         st.write("Description here.")
         col1, col2 = st.columns(2)
         with col1:
-                st.image("images/placeholder.webp", caption='Markowitz Portfolio Theory', use_container_width=True)
+            st.image("images/placeholder.webp",
+                     caption='Markowitz Portfolio Theory', use_container_width=True)
         with col2:
-                st.image("images/placeholder.webp", caption='Deep Reinforcement Learning', use_container_width=True)
+            st.image("images/placeholder.webp",
+                     caption='Deep Reinforcement Learning', use_container_width=True)
         if st.button("See investment decisions example based on Techport/SBIR data"):
             st.switch_page('./pages/mpt.py')

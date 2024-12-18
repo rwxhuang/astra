@@ -4,8 +4,10 @@ from htbuilder.funcs import rgba, rgb
 
 import streamlit as st
 
+
 def link(link, text, **style):
     return a(_href=link, _target="_blank", style=styles(**style))(text)
+
 
 def layout(*args):
 
