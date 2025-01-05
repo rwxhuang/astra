@@ -1,32 +1,53 @@
 import streamlit as st
 from pygwalker.api.streamlit import StreamlitRenderer
-from st_files_connection import FilesConnection
 
 from src.data_collection import get_astra_data
 
 import pandas as pd
+import json
 
+# Initialize search_input in session state
+if 'search_input' not in st.session_state:
+    st.session_state.search_input = ""
 st.set_page_config(
     layout="wide", initial_sidebar_state="collapsed", page_icon='🛰️')
 
+# Body of the page
 st.header("Technology Project Data")
 
 st.write("Given a search term, web-scrape the Techport database. Put description here...")
-search_input = st.text_input('Enter your search input', value="")
+st.session_state.search_input = st.text_input(
+    'Enter your search input', value=st.session_state.search_input)
+search_options = ['heliophysics',
+                  'lidar',
+                  'earth observation',
+                  'artificial intelligence',
+                  'robotics',
+                  'mars']
+cols = st.columns(6)
+for i, option in enumerate(search_options):
+    with cols[i]:
+        if st.button(option, use_container_width=True, icon=':material/search:', type='tertiary'):
+            st.session_state.search_input = option
+            st.rerun()
 
-if search_input:
-    conn = st.connection('s3', type=FilesConnection)
-    df = conn.read("astra-data-bucket/techport_all.csv",
-                   input_format="csv", ttl=600)
+# Retrieve data given search input
+with st.spinner(f'Fetching data for "{st.session_state.search_input}" from database...'):
+    df = get_astra_data(st.session_state.search_input)
 
-    st.download_button(
-        "Press to Download Data",
-        df.to_csv(index=False).encode('utf-8'),
-        "astra_data.csv",
-        "text/csv",
-        key='download-csv'
-    )
+st.download_button(
+    'Download Data',
+    df.to_csv(index=False).encode('utf-8'),
+    'astra_data_' + st.session_state.search_input + '.csv',
+    'text/csv',
+    key='download-csv',
+    type='primary',
+    icon=':material/download:',
+    help='Download the data as a CSV file.',
+)
 
-    pyg_app = StreamlitRenderer(df)
-
-    pyg_app.explorer()
+# Read the JSON file for chart specifications
+with open('utils/data_charts.json') as file:
+    chart_spec = json.load(file)
+pyg_app = StreamlitRenderer(df, spec=chart_spec)
+pyg_app.explorer()

@@ -1,0 +1,303 @@
+[
+    {
+      "config": {
+        "defaultAggregated": true,
+        "geoms": [
+          "circle"
+        ],
+        "coordSystem": "generic",
+        "limit": -1,
+        "timezoneDisplayOffset": 0
+      },
+      "encodings": {
+        "dimensions": [
+          {
+            "fid": "PROJECT_TITLE",
+            "name": "PROJECT_TITLE",
+            "basename": "PROJECT_TITLE",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "ACRONYM",
+            "name": "ACRONYM",
+            "basename": "ACRONYM",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "STATUS",
+            "name": "STATUS",
+            "basename": "STATUS",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "DESCRIPTION",
+            "name": "DESCRIPTION",
+            "basename": "DESCRIPTION",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "BENEFITS",
+            "name": "BENEFITS",
+            "basename": "BENEFITS",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "IMAGE_CAPTION",
+            "name": "IMAGE_CAPTION",
+            "basename": "IMAGE_CAPTION",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "RESPONSIBLE_PROGRAM",
+            "name": "RESPONSIBLE_PROGRAM",
+            "basename": "RESPONSIBLE_PROGRAM",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "RESPONSIBLE_MISSION_DIRECTORATE",
+            "name": "RESPONSIBLE_MISSION_DIRECTORATE",
+            "basename": "RESPONSIBLE_MISSION_DIRECTORATE",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "START_DATE",
+            "name": "START_DATE",
+            "basename": "START_DATE",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "END_DATE",
+            "name": "END_DATE",
+            "basename": "END_DATE",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "PRIMARY_TX",
+            "name": "PRIMARY_TX",
+            "basename": "PRIMARY_TX",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "OTHER_TX",
+            "name": "OTHER_TX",
+            "basename": "OTHER_TX",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "PROJECT_CONTACTS",
+            "name": "PROJECT_CONTACTS",
+            "basename": "PROJECT_CONTACTS",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "PROGRAM_CONTACTS",
+            "name": "PROGRAM_CONTACTS",
+            "basename": "PROGRAM_CONTACTS",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "LEAD_ORGANIZATION",
+            "name": "LEAD_ORGANIZATION",
+            "basename": "LEAD_ORGANIZATION",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+            "name": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+            "basename": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "TARGET_DESTINATIONS",
+            "name": "TARGET_DESTINATIONS",
+            "basename": "TARGET_DESTINATIONS",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "TRANSITION_EVENTS",
+            "name": "TRANSITION_EVENTS",
+            "basename": "TRANSITION_EVENTS",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "START_TRL",
+            "name": "START_TRL",
+            "basename": "START_TRL",
+            "analyticType": "dimension",
+            "semanticType": "quantitative",
+            "aggName": "sum",
+            "offset": 0
+          },
+          {
+            "fid": "CLOSEOUT_DOCUMENTATION",
+            "name": "CLOSEOUT_DOCUMENTATION",
+            "basename": "CLOSEOUT_DOCUMENTATION",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "LAST_MODIFIED",
+            "name": "LAST_MODIFIED",
+            "basename": "LAST_MODIFIED",
+            "semanticType": "nominal",
+            "analyticType": "dimension",
+            "offset": 0
+          },
+          {
+            "fid": "gw_mea_key_fid",
+            "name": "Measure names",
+            "analyticType": "dimension",
+            "semanticType": "nominal"
+          }
+        ],
+        "measures": [
+          {
+            "fid": "CURRENT_TRL",
+            "name": "CURRENT_TRL",
+            "basename": "CURRENT_TRL",
+            "analyticType": "measure",
+            "semanticType": "quantitative",
+            "aggName": "sum",
+            "offset": 0
+          },
+          {
+            "fid": "END_TRL",
+            "name": "END_TRL",
+            "basename": "END_TRL",
+            "analyticType": "measure",
+            "semanticType": "quantitative",
+            "aggName": "sum",
+            "offset": 0
+          },
+          {
+            "fid": "VIEW_COUNT",
+            "name": "VIEW_COUNT",
+            "basename": "VIEW_COUNT",
+            "analyticType": "measure",
+            "semanticType": "quantitative",
+            "aggName": "sum",
+            "offset": 0
+          },
+          {
+            "fid": "gw_count_fid",
+            "name": "Row count",
+            "analyticType": "measure",
+            "semanticType": "quantitative",
+            "aggName": "sum",
+            "computed": true,
+            "expression": {
+              "op": "one",
+              "params": [],
+              "as": "gw_count_fid"
+            }
+          },
+          {
+            "fid": "gw_mea_val_fid",
+            "name": "Measure values",
+            "analyticType": "measure",
+            "semanticType": "quantitative",
+            "aggName": "sum"
+          }
+        ],
+        "rows": [
+          {
+            "fid": "gw_count_fid",
+            "name": "Row count",
+            "analyticType": "measure",
+            "semanticType": "quantitative",
+            "aggName": "sum",
+            "computed": true,
+            "expression": {
+              "op": "one",
+              "params": [],
+              "as": "gw_count_fid"
+            }
+          }
+        ],
+        "columns": [
+          {
+            "fid": "START_TRL",
+            "name": "START_TRL",
+            "basename": "START_TRL",
+            "analyticType": "dimension",
+            "semanticType": "quantitative",
+            "aggName": "sum",
+            "offset": 0
+          }
+        ],
+        "color": [],
+        "opacity": [],
+        "size": [],
+        "shape": [],
+        "radius": [],
+        "theta": [],
+        "longitude": [],
+        "latitude": [],
+        "geoId": [],
+        "details": [],
+        "filters": [],
+        "text": []
+      },
+      "layout": {
+        "showActions": false,
+        "showTableSummary": false,
+        "stack": "stack",
+        "interactiveScale": true,
+        "zeroScale": true,
+        "size": {
+          "mode": "full",
+          "width": 320,
+          "height": 200
+        },
+        "format": {},
+        "geoKey": "name",
+        "resolve": {
+          "x": false,
+          "y": false,
+          "color": false,
+          "opacity": false,
+          "shape": false,
+          "size": false
+        }
+      },
+      "visId": "gw_s86F",
+      "name": "Chart 1"
+    }
+  ]

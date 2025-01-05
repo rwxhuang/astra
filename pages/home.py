@@ -38,8 +38,13 @@ with body:
         with explanation:
             st.markdown("""
                         #### Retrieve NASA Technology Project Data
+
+                        Compile a dataset from Techport and SBIR that outlines the features of technology
+                        projects including project dates, costs, locations, technology readiness levels (TRLs),
+                        taxonomy levels, etc.
+
+                        Additionally, use pygwalker as an interactive tool to visualize the dataset.
                         """)
-            st.write("Description here.")
             if st.button("Try it out", use_container_width=True):
                 st.switch_page('pages/data.py')
         with img:
@@ -48,10 +53,14 @@ with body:
     with st.container(border=True):
         st.markdown("""
                 <p style='text-align: center; font-size: 100%;font-family: monospace;'>PORTFOLIO THEORY</p>
-                    
+
                 #### Automate Portfolio Investment Decisions
                 """, unsafe_allow_html=True)
-        st.write("Description here.")
+        st.markdown("""
+                    Discover a carefully crafted methodology to automate the process of determining technology 
+                    project investments through two tools: Markowitz Portfolio Theory (MPT--on left) and 
+                    Deep Reinforcement Learning (DRL--on right).
+                    """)
         col1, col2 = st.columns(2)
         with col1:
             st.image("images/placeholder.webp",
