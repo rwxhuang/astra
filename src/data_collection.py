@@ -71,7 +71,7 @@ def get_astra_data(search_input):
     """
     # Fetch Techport data from S3
     conn = st.connection('s3', type=FilesConnection)
-    df = conn.read("astra-data-bucket/techport_121824_clean.csv",
+    df = conn.read("astra-data-bucket/techport_all.csv",
                    input_format="csv", ttl=600)
     df.set_index('PROJECT_ID', inplace=True)
     if not search_input:
