@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import time
 
+from abc import ABC, abstractmethod
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from st_files_connection import FilesConnection
@@ -61,6 +62,77 @@ class TechportScraper:
         return project_ids
 
 
+class Dataset(ABC):
+    """
+    Interface for handling datasets.
+    Defines the required methods for any dataset handler.
+    """
+    @abstractmethod
+    def load_data(self):
+        """Load the data from the S3 bucket."""
+        pass
+
+    @abstractmethod
+    def load_processed_data(self):
+        """Process the data and return it."""
+        pass
+
+
+class TechportData(Dataset):
+    """
+    A class for loading and processing data from the Techport dataset.
+
+    Attributes:
+        conn (object): The connection object used to access the data.
+        bucket (str): The name of the S3 bucket where the data is stored.
+        file_name (str): The name of the CSV file to load.
+    """
+    _instance = None
+
+    def __init__(self, conn):
+        self.conn = conn
+        self.bucket = "astra-data-bucket"
+        self.file_name = "update_3_merged_with_views_scraped.csv"
+
+    def load_data(self):
+        df = self.conn.read(self.bucket + '/' + self.file_name,
+                            input_format="csv", ttl=600)
+        df.set_index('PROJECT_ID', inplace=True)
+        return df
+
+    def load_processed_data(self):
+        df = self.load_data()
+        # TODO: Add processing steps here
+        return df
+
+
+class SBIRData(Dataset):
+    """
+    A class for loading and processing data from the SBIR dataset.
+
+    Attributes:
+        conn (object): The connection object used to access the data.
+        bucket (str): The name of the S3 bucket where the data is stored.
+        file_name (str): The name of the CSV file to load.
+    """
+
+    conn = st.connection('s3', type=FilesConnection)
+
+    def __init__(self, conn):
+        self.conn = conn
+        self.bucket = "astra-data-bucket"
+        self.file_name = "sbir_all.csv"
+
+    def load_data(self):
+        df = self.conn.read(self.bucket + '/' + self.file_name,
+                            input_format="csv", ttl=600)
+        return df
+
+    def load_processed_data(self):
+        df = self.load_data()
+        return df
+
+
 @st.cache_data
 def get_astra_data(search_input):
     """
@@ -71,9 +143,8 @@ def get_astra_data(search_input):
     """
     # Fetch Techport data from S3
     conn = st.connection('s3', type=FilesConnection)
-    df = conn.read("astra-data-bucket/techport_all.csv",
-                   input_format="csv", ttl=600)
-    df.set_index('PROJECT_ID', inplace=True)
+    df = TechportData(conn).load_data()
+    # TODO: merge TechportData(conn).load_data() with SBIRData(conn).load_data()
     if not search_input:
         return df
     # Get Techport project ids
