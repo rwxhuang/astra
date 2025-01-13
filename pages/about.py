@@ -31,6 +31,10 @@ with col1:
         st.image("./images/nadiak.png", use_container_width=True)
         st.write(
             "#### Nadia Khan \n *Graduate Researcher*: Technology Policy Program Masters Candidate")
+    with st.container(height=500, border=True):
+        st.image("./images/aaron_martin.png", use_container_width=True)
+        st.write(
+            "#### Aaron Martin \n *Undergraduate Student*: Double majoring in Mathematics and Computer Science")
 
 with col2:
     with st.container(height=500, border=True):
