@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import time
+import numpy as np
 
 from abc import ABC, abstractmethod
 from selenium import webdriver
@@ -92,17 +93,72 @@ class TechportData(Dataset):
     def __init__(self, conn):
         self.conn = conn
         self.bucket = "astra-data-bucket"
-        self.file_name = "update_3_merged_with_views_scraped.csv"
+        self.file_name = "load_data_after_scrape.csv"
 
     def load_data(self):
-        df = self.conn.read(self.bucket + '/' + self.file_name,
-                            input_format="csv", ttl=600)
+        with self.conn.open(self.bucket + '/' + self.file_name, "rb", encoding='utf-8') as f:
+            df = pd.read_csv(f)
         df.set_index('PROJECT_ID', inplace=True)
         return df
 
     def load_processed_data(self):
         df = self.load_data()
-        # TODO: Add processing steps here
+        
+        # Extract the first number pattern after 'TX' and before the second dot
+        df['TX_EXTRACTED'] = df['Primary TX'].str.extract(
+            r'TX(\d+)\.(\d+)')[0] + '.' + df['Primary TX'].str.extract(r'TX(\d+)\.(\d+)')[1]
+
+        # get all different combinations of locations listed
+        locations_list = df['Locations Where Work is Performed'].unique()
+
+        unique_locations = set()
+
+        # for each combination
+        for elem in locations_list:
+            # if string
+            if isinstance(elem, str):
+                # try to split it 
+                locations = elem.split('; ')
+                # add each split location
+                for location in locations:
+                    unique_locations.add(location)  # Add each location to the set
+            # handles NaN's
+            else:
+                continue
+
+
+        unique_locations.remove('Not Applicable')
+        unique_locations.remove('Outside the United States ')
+
+        # mapping from location to index
+        location_to_index = {location: index for index, location in enumerate(unique_locations)}
+        location_to_index['Outside the United States '] = location_to_index['Outside the United States']
+
+
+        def convert_to_vector(locations):
+            '''
+            Takes in locations with form state; state; ...
+            and converts it to a one-hot encoding
+            '''
+            # initialize binary vector
+            vector = np.zeros(len(unique_locations), dtype=int)
+
+            # if locations is NaN or N/A then don't update vector
+            if not isinstance(locations, str) or locations == 'Not Applicable':
+                pass
+
+            else:
+                # get every individual location
+                location_list = locations.split('; ')
+                
+                # for each location, update it's spot in the vector to 1
+                for loc in location_list:
+                    vector[location_to_index[loc]] = 1
+            
+            return vector
+
+        df['LOCATIONS_ENCODED'] = df['Locations Where Work is Performed'].apply(convert_to_vector)
+
         return df
 
 
