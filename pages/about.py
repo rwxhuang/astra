@@ -46,7 +46,7 @@ with col2:
         st.write(
             "#### Hailey D Polson \n *Undergraduate Student*: Majoring in Aerospace Engineering (16)")
     with st.container(height=500, border=True):
-        st.image("./images/hailey.jpg", use_container_width=True)
+        st.image("./images/rachel.jpg", use_container_width=True)
         st.write(
             "#### Rachel Yang \n *Undergraduate Student*: Majoring in AI and Decision Making (6-4)")
 
