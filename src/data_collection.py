@@ -13,6 +13,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from sklearn.preprocessing import MinMaxScaler
 
 
 class TechportScraper:
@@ -99,65 +100,132 @@ class TechportData(Dataset):
         with self.conn.open(self.bucket + '/' + self.file_name, "rb", encoding='utf-8') as f:
             df = pd.read_csv(f)
         df.set_index('PROJECT_ID', inplace=True)
+        
+        # make sure date cols are datetime types
+        date_time_cols = ['START_DATE', 'END_DATE', 'LAST_MODIFIED']
+        for col in date_time_cols:
+            df[col] = pd.to_datetime(df[col])
+
+        # make tx levels readable
+        def extract_tx_level(dataframe):
+            '''
+            dataframe: take in a dataframe
+            return a dataframe with the extracted tx level
+            '''
+            # collect first and second parts of tx level
+            dataframe['TX_PART1'] = dataframe['PRIMARY_TX'].str.extract(r'TX(\d{2})')
+            dataframe['TX_PART2'] = dataframe['PRIMARY_TX'].str.extract(r'TX\d{2}\.(\d+|X)')
+            dataframe['TX_PART2'] = dataframe['TX_PART2'].replace('X', '0').fillna('0')
+
+            # combine parts into a float for extracted tx
+            dataframe['TX_EXTRACTED'] = dataframe['TX_PART1'] + '.' + df['TX_PART2']
+            dataframe['TX_EXTRACTED'] = dataframe['TX_EXTRACTED'].astype(float)
+
+            dataframe = dataframe.drop(columns=['TX_PART1', 'TX_PART2'])
+
+            return dataframe
+        
+        df = extract_tx_level(df)
+
         return df
 
     def load_processed_data(self):
         df = self.load_data()
         
-        # Extract the first number pattern after 'TX' and before the second dot
-        df['TX_EXTRACTED'] = df['Primary TX'].str.extract(
-            r'TX(\d+)\.(\d+)')[0] + '.' + df['Primary TX'].str.extract(r'TX(\d+)\.(\d+)')[1]
-
-        # get all different combinations of locations listed
-        locations_list = df['Locations Where Work is Performed'].unique()
-
-        unique_locations = set()
-
-        # for each combination
-        for elem in locations_list:
-            # if string
-            if isinstance(elem, str):
-                # try to split it 
-                locations = elem.split('; ')
-                # add each split location
-                for location in locations:
-                    unique_locations.add(location)  # Add each location to the set
-            # handles NaN's
-            else:
-                continue
-
-
-        unique_locations.remove('Not Applicable')
-        unique_locations.remove('Outside the United States ')
-
-        # mapping from location to index
-        location_to_index = {location: index for index, location in enumerate(unique_locations)}
-        location_to_index['Outside the United States '] = location_to_index['Outside the United States']
-
-
-        def convert_to_vector(locations):
+        def encode_locations(dataframe):
             '''
-            Takes in locations with form state; state; ...
-            and converts it to a one-hot encoding
+            dataframe: given a dataframe
+            returns a dataframe with col for locations encoded
             '''
-            # initialize binary vector
-            vector = np.zeros(len(unique_locations), dtype=int)
+            # get all different combinations of locations listed
+            locations_list = dataframe['LOCATIONS_WHERE_WORK_IS_PERFORMED'].unique()
 
-            # if locations is NaN or N/A then don't update vector
-            if not isinstance(locations, str) or locations == 'Not Applicable':
-                pass
+            unique_locations = set()
 
-            else:
-                # get every individual location
-                location_list = locations.split('; ')
+            # for each combination
+            for elem in locations_list:
+                # if string
+                if isinstance(elem, str):
+                    # try to split it 
+                    locations = elem.split('; ')
+                    # add each split location
+                    for location in locations:
+                        unique_locations.add(location)  # Add each location to the set
+                # handles NaN's
+                else:
+                    continue
+
+            unique_locations.remove('Not Applicable')
+            unique_locations.remove('Outside the United States ')
+
+            # mapping from location to index
+            location_to_index = {location: index for index, location in enumerate(unique_locations)}
+            location_to_index['Outside the United States '] = location_to_index['Outside the United States']
+
+
+            def convert_to_vector_locations(locations):
+                '''
+                Takes in locations with form state; state; ...
+                and converts it to a one-hot encoding
+                '''
+                # initialize binary vector
+                vector = np.zeros(len(unique_locations), dtype=int)
+
+                # if locations is NaN or N/A then don't update vector
+                if not isinstance(locations, str) or locations == 'Not Applicable':
+                    pass
+
+                else:
+                    # get every individual location
+                    location_list = locations.split('; ')
+                    
+                    # for each location, update it's spot in the vector to 1
+                    for loc in location_list:
+                        vector[location_to_index[loc]] = 1
                 
-                # for each location, update it's spot in the vector to 1
-                for loc in location_list:
-                    vector[location_to_index[loc]] = 1
-            
-            return vector
+                return vector
 
-        df['LOCATIONS_ENCODED'] = df['Locations Where Work is Performed'].apply(convert_to_vector)
+            dataframe['LOCATIONS_ENCODED'] = dataframe['LOCATIONS_WHERE_WORK_IS_PERFORMED'].apply(convert_to_vector_locations)
+
+            return dataframe
+        
+        def encode_status(dataframe):
+            '''
+            dataframe: given a dataframe
+            return the dataframe with a col for encoding for completed, active, or cancelled
+            '''
+
+            statuses = {'Active', 'Completed', 'Canceled'}
+
+            status_to_index = {status: index for index, status in enumerate(statuses)}
+
+            def convert_to_vector_statuses(status):
+                '''
+                one hot encodes the given status
+                '''
+                vector = np.zeros(len(status_to_index), dtype=int)
+                vector[status_to_index[status]] = 1
+                return vector
+            
+            dataframe['STATUS_ENCODED'] = dataframe['STATUS'].apply(convert_to_vector_statuses)
+            
+            return dataframe
+        
+        def normalize_views(dataframe, lower, upper):
+            '''
+            dataframe: takes in a dateframe
+            lower: lower bound min
+            upper: upper bound max
+            returns a dataframe with the views normalized from lower to upper
+            '''
+
+            scaler = MinMaxScaler(feature_range=(lower,upper))
+            dataframe['VIEW_COUNT_NORMALIZED'] = scaler.fit_transform(dataframe[['VIEW_COUNT']])
+            return df
+
+        df = encode_locations(df)
+        df = encode_status(df)
+        df = normalize_views(df, 0, 1)
 
         return df
 
