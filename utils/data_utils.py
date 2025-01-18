@@ -32,43 +32,34 @@ def encode_locations(dataframe):
     dataframe: given a dataframe
     returns a dataframe with col for locations encoded as a one-hot encoding
     '''
-    # get all different combinations of locations listed
-    locations_list = dataframe['LOCATIONS_WHERE_WORK_IS_PERFORMED'].unique()
-
-    # initialize set to store unique locations
-    unique_locations = []
-
-    # for each combination
-    for elem in locations_list:
-        # if string
-        if isinstance(elem, str):
-            # try to split it 
-            locations = elem.split('; ')
-            # add each split location to set
-            for location in locations:
-                unique_locations.add(location)
-        # handles NaN's (not strings)
-        else:
-            continue
-    
-    # not locations or repeated
-    unique_locations.remove('Not Applicable')
-    unique_locations.remove('Outside the United States ')
 
     # mapping from location to index
-    location_to_index = {location: index for index, location in enumerate(unique_locations)}
-
-    # repeat locations maps to same location in encoding
-    location_to_index['Outside the United States '] = location_to_index['Outside the United States']
-
+    location_to_index = {'Arkansas (AR)': 0, 'Minnesota (MN)': 1, 'West Virginia (WV)': 2, 
+                         'Maine (ME)': 3, 'Guam (GU)': 4, 'Alabama (AL)': 5, 'Louisiana (LA)': 6, 
+                         'Indiana (IN)': 7, 'Texas (TX)': 8, 'Connecticut (CT)': 9, 'Virginia (VA)': 10, 
+                         'Idaho (ID)': 11, 'Kansas (KS)': 12, 'Nevada (NV)': 13, 'Kentucky (KY)': 14, 
+                         'South Dakota (SD)': 15, 'Marshall Islands (MH)': 16, 'Oregon (OR)': 17, 
+                         'Michigan (MI)': 18, 'Washington (WA)': 19, 'Iowa (IA)': 20, 'Georgia (GA)': 21, 
+                         'District of Columbia (DC)': 22, 'Puerto Rico (PR)': 23, 'Utah (UT)': 24, 
+                         'Missouri (MO)': 25, 'Wyoming (WY)': 26, 'Outside the United States': 27, 
+                         'North Dakota (ND)': 28, 'New Mexico (NM)': 29, 'Arizona (AZ)': 30, 
+                         'Pennsylvania (PA)': 31, 'Montana (MT)': 32, 'Mississippi (MS)': 33, 
+                         'Wisconsin (WI)': 34, 'Alaska (AK)': 35, 'New Hampshire (NH)': 36, 
+                         'Delaware (DE)': 37, 'Colorado (CO)': 38, 'California (CA)': 39, 
+                         'Vermont (VT)': 40, 'Oklahoma (OK)': 41, 'Virgin Islands (VI)': 42, 
+                         'Tennessee (TN)': 43, 'Massachusetts (MA)': 44, 'Hawaii (HI)': 45, 
+                         'Maryland (MD)': 46, 'Ohio (OH)': 47, 'Florida (FL)': 48, 
+                         'South Carolina (SC)': 49, 'New York (NY)': 50, 'North Carolina (NC)': 51, 
+                         'Rhode Island (RI)': 52, 'Illinois (IL)': 53, 'Nebraska (NE)': 54, 
+                         'New Jersey (NJ)': 55, 'Outside the United States ': 27}
 
     def convert_to_vector_locations(locations):
         '''
         Takes in locations with form state; state; ...
         and converts it to a one-hot encoding [0,0,0,1,0...]
         '''
-        # initialize binary vector
-        vector = np.zeros(len(unique_locations), dtype=int)
+        # initialize binary vector, len - 1 because outside the US is repeated twice
+        vector = np.zeros(len(location_to_index) - 1, dtype=int)
 
         # if locations is NaN or N/A then don't update vector
         if not isinstance(locations, str) or locations == 'Not Applicable':
@@ -102,7 +93,7 @@ def encode_status(dataframe):
 
     def convert_to_vector_statuses(status):
         '''
-        one hot encodes the given status
+        given a status, change status into a one-hot encoding
         '''
         # initialize empty binary vector
         vector = np.zeros(len(statuses), dtype=int)
@@ -132,3 +123,19 @@ def normalize_views(dataframe, lower, upper):
     dataframe['VIEW_COUNT_NORMALIZED'] = scaler.fit_transform(dataframe[['VIEW_COUNT']])
     
     return dataframe
+
+
+    '''
+    formula: string representation of a formula
+    return a lambda function that takes in a dictionary mapping
+    the variable names to a list of their column values
+    '''
+
+    def lambda_function(**variables):
+        '''
+        variables: dictionary mapping var name to
+        a list of their values
+        '''
+        return eval(formula, {}, variables)
+    
+    return lambda_function
