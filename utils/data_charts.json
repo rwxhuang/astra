@@ -1,303 +1,3136 @@
 [
-    {
-      "config": {
-        "defaultAggregated": true,
-        "geoms": [
-          "circle"
-        ],
-        "coordSystem": "generic",
-        "limit": -1,
-        "timezoneDisplayOffset": 0
-      },
-      "encodings": {
-        "dimensions": [
-          {
-            "fid": "PROJECT_TITLE",
-            "name": "PROJECT_TITLE",
-            "basename": "PROJECT_TITLE",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "ACRONYM",
-            "name": "ACRONYM",
-            "basename": "ACRONYM",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "STATUS",
-            "name": "STATUS",
-            "basename": "STATUS",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "DESCRIPTION",
-            "name": "DESCRIPTION",
-            "basename": "DESCRIPTION",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "BENEFITS",
-            "name": "BENEFITS",
-            "basename": "BENEFITS",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "IMAGE_CAPTION",
-            "name": "IMAGE_CAPTION",
-            "basename": "IMAGE_CAPTION",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "RESPONSIBLE_PROGRAM",
-            "name": "RESPONSIBLE_PROGRAM",
-            "basename": "RESPONSIBLE_PROGRAM",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "RESPONSIBLE_MISSION_DIRECTORATE",
-            "name": "RESPONSIBLE_MISSION_DIRECTORATE",
-            "basename": "RESPONSIBLE_MISSION_DIRECTORATE",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "START_DATE",
-            "name": "START_DATE",
-            "basename": "START_DATE",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "END_DATE",
-            "name": "END_DATE",
-            "basename": "END_DATE",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "PRIMARY_TX",
-            "name": "PRIMARY_TX",
-            "basename": "PRIMARY_TX",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "OTHER_TX",
-            "name": "OTHER_TX",
-            "basename": "OTHER_TX",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "PROJECT_CONTACTS",
-            "name": "PROJECT_CONTACTS",
-            "basename": "PROJECT_CONTACTS",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "PROGRAM_CONTACTS",
-            "name": "PROGRAM_CONTACTS",
-            "basename": "PROGRAM_CONTACTS",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "LEAD_ORGANIZATION",
-            "name": "LEAD_ORGANIZATION",
-            "basename": "LEAD_ORGANIZATION",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
-            "name": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
-            "basename": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "TARGET_DESTINATIONS",
-            "name": "TARGET_DESTINATIONS",
-            "basename": "TARGET_DESTINATIONS",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "TRANSITION_EVENTS",
-            "name": "TRANSITION_EVENTS",
-            "basename": "TRANSITION_EVENTS",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "START_TRL",
-            "name": "START_TRL",
-            "basename": "START_TRL",
-            "analyticType": "dimension",
-            "semanticType": "quantitative",
-            "aggName": "sum",
-            "offset": 0
-          },
-          {
-            "fid": "CLOSEOUT_DOCUMENTATION",
-            "name": "CLOSEOUT_DOCUMENTATION",
-            "basename": "CLOSEOUT_DOCUMENTATION",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "LAST_MODIFIED",
-            "name": "LAST_MODIFIED",
-            "basename": "LAST_MODIFIED",
-            "semanticType": "nominal",
-            "analyticType": "dimension",
-            "offset": 0
-          },
-          {
-            "fid": "gw_mea_key_fid",
-            "name": "Measure names",
-            "analyticType": "dimension",
-            "semanticType": "nominal"
-          }
-        ],
-        "measures": [
-          {
-            "fid": "CURRENT_TRL",
-            "name": "CURRENT_TRL",
-            "basename": "CURRENT_TRL",
-            "analyticType": "measure",
-            "semanticType": "quantitative",
-            "aggName": "sum",
-            "offset": 0
-          },
-          {
-            "fid": "END_TRL",
-            "name": "END_TRL",
-            "basename": "END_TRL",
-            "analyticType": "measure",
-            "semanticType": "quantitative",
-            "aggName": "sum",
-            "offset": 0
-          },
-          {
-            "fid": "VIEW_COUNT",
-            "name": "VIEW_COUNT",
-            "basename": "VIEW_COUNT",
-            "analyticType": "measure",
-            "semanticType": "quantitative",
-            "aggName": "sum",
-            "offset": 0
-          },
-          {
-            "fid": "gw_count_fid",
-            "name": "Row count",
-            "analyticType": "measure",
-            "semanticType": "quantitative",
-            "aggName": "sum",
-            "computed": true,
-            "expression": {
-              "op": "one",
-              "params": [],
-              "as": "gw_count_fid"
-            }
-          },
-          {
-            "fid": "gw_mea_val_fid",
-            "name": "Measure values",
-            "analyticType": "measure",
-            "semanticType": "quantitative",
-            "aggName": "sum"
-          }
-        ],
-        "rows": [
-          {
-            "fid": "gw_count_fid",
-            "name": "Row count",
-            "analyticType": "measure",
-            "semanticType": "quantitative",
-            "aggName": "sum",
-            "computed": true,
-            "expression": {
-              "op": "one",
-              "params": [],
-              "as": "gw_count_fid"
-            }
-          }
-        ],
-        "columns": [
-          {
-            "fid": "START_TRL",
-            "name": "START_TRL",
-            "basename": "START_TRL",
-            "analyticType": "dimension",
-            "semanticType": "quantitative",
-            "aggName": "sum",
-            "offset": 0
-          }
-        ],
-        "color": [],
-        "opacity": [],
-        "size": [],
-        "shape": [],
-        "radius": [],
-        "theta": [],
-        "longitude": [],
-        "latitude": [],
-        "geoId": [],
-        "details": [],
-        "filters": [],
-        "text": []
-      },
-      "layout": {
-        "showActions": false,
-        "showTableSummary": false,
-        "stack": "stack",
-        "interactiveScale": true,
-        "zeroScale": true,
-        "size": {
-          "mode": "full",
-          "width": 320,
-          "height": 200
+  {
+    "config": {
+      "defaultAggregated": true,
+      "geoms": [
+        "circle"
+      ],
+      "coordSystem": "generic",
+      "limit": -1,
+      "timezoneDisplayOffset": 0
+    },
+    "encodings": {
+      "dimensions": [
+        {
+          "fid": "PROJECT_TITLE",
+          "name": "PROJECT_TITLE",
+          "basename": "PROJECT_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
         },
-        "format": {},
-        "geoKey": "name",
-        "resolve": {
-          "x": false,
-          "y": false,
-          "color": false,
-          "opacity": false,
-          "shape": false,
-          "size": false
+        {
+          "fid": "ACRONYM",
+          "name": "ACRONYM",
+          "basename": "ACRONYM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "STATUS",
+          "name": "STATUS",
+          "basename": "STATUS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "DESCRIPTION",
+          "name": "DESCRIPTION",
+          "basename": "DESCRIPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "BENEFITS",
+          "name": "BENEFITS",
+          "basename": "BENEFITS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "IMAGE_CAPTION",
+          "name": "IMAGE_CAPTION",
+          "basename": "IMAGE_CAPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_PROGRAM",
+          "name": "RESPONSIBLE_PROGRAM",
+          "basename": "RESPONSIBLE_PROGRAM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "name": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "basename": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_DATE",
+          "name": "START_DATE",
+          "basename": "START_DATE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "END_DATE",
+          "name": "END_DATE",
+          "basename": "END_DATE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PRIMARY_TX",
+          "name": "PRIMARY_TX",
+          "basename": "PRIMARY_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "OTHER_TX",
+          "name": "OTHER_TX",
+          "basename": "OTHER_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROJECT_CONTACTS",
+          "name": "PROJECT_CONTACTS",
+          "basename": "PROJECT_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROGRAM_CONTACTS",
+          "name": "PROGRAM_CONTACTS",
+          "basename": "PROGRAM_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LEAD_ORGANIZATION",
+          "name": "LEAD_ORGANIZATION",
+          "basename": "LEAD_ORGANIZATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "name": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "basename": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TARGET_DESTINATIONS",
+          "name": "TARGET_DESTINATIONS",
+          "basename": "TARGET_DESTINATIONS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TRANSITION_EVENTS",
+          "name": "TRANSITION_EVENTS",
+          "basename": "TRANSITION_EVENTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_TRL_1",
+          "name": "START_TRL_1",
+          "basename": "START_TRL_1",
+          "analyticType": "dimension",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "CLOSEOUT_DOCUMENTATION",
+          "name": "CLOSEOUT_DOCUMENTATION",
+          "basename": "CLOSEOUT_DOCUMENTATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LAST_MODIFIED",
+          "name": "LAST_MODIFIED",
+          "basename": "LAST_MODIFIED",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "gw_mea_key_fid",
+          "name": "Measure names",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "offset": 0
         }
+      ],
+      "measures": [
+        {
+          "fid": "CURRENT_TRL",
+          "name": "CURRENT_TRL",
+          "basename": "CURRENT_TRL",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TRL-Out Level",
+          "name": "TRL-Out Level",
+          "basename": "TRL-Out Level",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "VIEW_COUNT",
+          "name": "VIEW_COUNT",
+          "basename": "VIEW_COUNT",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          },
+          "offset": 0
+        },
+        {
+          "fid": "gw_mea_val_fid",
+          "name": "Measure values",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED",
+          "name": "TX_EXTRACTED",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "TX_EXTRACTED",
+          "dragId": "GW_47zcTdWC",
+          "offset": 0
+        },
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "START_TRL",
+          "dragId": "GW_xJutsYHG",
+          "offset": 0
+        },
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "END_TRL",
+          "dragId": "GW_hHeqobza",
+          "offset": 0
+        }
+      ],
+      "rows": [
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          },
+          "offset": 0
+        }
+      ],
+      "columns": [
+        {
+          "fid": "START_TRL_1",
+          "name": "START_TRL_1",
+          "basename": "START_TRL_1",
+          "analyticType": "dimension",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        }
+      ],
+      "color": [],
+      "opacity": [],
+      "size": [],
+      "shape": [],
+      "radius": [],
+      "theta": [],
+      "longitude": [],
+      "latitude": [],
+      "geoId": [],
+      "details": [],
+      "filters": [],
+      "text": []
+    },
+    "layout": {
+      "showActions": false,
+      "showTableSummary": false,
+      "stack": "stack",
+      "interactiveScale": true,
+      "zeroScale": true,
+      "size": {
+        "mode": "full",
+        "width": 320,
+        "height": 200
       },
-      "visId": "gw_s86F",
-      "name": "Chart 1"
-    }
-  ]
+      "format": {},
+      "geoKey": "name",
+      "resolve": {
+        "x": false,
+        "y": false,
+        "color": false,
+        "opacity": false,
+        "shape": false,
+        "size": false
+      }
+    },
+    "visId": "gw_s86F",
+    "name": "Chart 1"
+  },
+  {
+    "config": {
+      "defaultAggregated": true,
+      "geoms": [
+        "auto"
+      ],
+      "coordSystem": "generic",
+      "limit": -1,
+      "timezoneDisplayOffset": 0
+    },
+    "encodings": {
+      "dimensions": [
+        {
+          "fid": "PROJECT_TITLE",
+          "name": "PROJECT_TITLE",
+          "basename": "PROJECT_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "ACRONYM",
+          "name": "ACRONYM",
+          "basename": "ACRONYM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "STATUS",
+          "name": "STATUS",
+          "basename": "STATUS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "DESCRIPTION",
+          "name": "DESCRIPTION",
+          "basename": "DESCRIPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "BENEFITS",
+          "name": "BENEFITS",
+          "basename": "BENEFITS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "IMAGE_CAPTION",
+          "name": "IMAGE_CAPTION",
+          "basename": "IMAGE_CAPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_PROGRAM",
+          "name": "RESPONSIBLE_PROGRAM",
+          "basename": "RESPONSIBLE_PROGRAM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "name": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "basename": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_DATE",
+          "name": "START_DATE",
+          "basename": "START_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "END_DATE",
+          "name": "END_DATE",
+          "basename": "END_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PRIMARY_TX",
+          "name": "PRIMARY_TX",
+          "basename": "PRIMARY_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "OTHER_TX",
+          "name": "OTHER_TX",
+          "basename": "OTHER_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROJECT_CONTACTS",
+          "name": "PROJECT_CONTACTS",
+          "basename": "PROJECT_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROGRAM_CONTACTS",
+          "name": "PROGRAM_CONTACTS",
+          "basename": "PROGRAM_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LEAD_ORGANIZATION",
+          "name": "LEAD_ORGANIZATION",
+          "basename": "LEAD_ORGANIZATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "name": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "basename": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TARGET_DESTINATIONS",
+          "name": "TARGET_DESTINATIONS",
+          "basename": "TARGET_DESTINATIONS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TRANSITION_EVENTS",
+          "name": "TRANSITION_EVENTS",
+          "basename": "TRANSITION_EVENTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "CLOSEOUT_DOCUMENTATION",
+          "name": "CLOSEOUT_DOCUMENTATION",
+          "basename": "CLOSEOUT_DOCUMENTATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LAST_MODIFIED",
+          "name": "LAST_MODIFIED",
+          "basename": "LAST_MODIFIED",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_H2ZD",
+          "name": "Project Start Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_H2ZD",
+            "params": [
+              {
+                "type": "sql",
+                "value": "(year (start_date) )"
+              }
+            ]
+          },
+          "offset": 0
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_ON-r",
+          "name": "TX Base Level",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_ON-r",
+            "params": [
+              {
+                "type": "sql",
+                "value": "CAST(TX_EXTRACTED as INT)"
+              }
+            ]
+          },
+          "offset": 0
+        },
+        {
+          "fid": "gw_mea_key_fid",
+          "name": "Measure names",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "offset": 0
+        }
+      ],
+      "measures": [
+        {
+          "fid": "START_TRL_1",
+          "name": "START_TRL_1",
+          "basename": "START_TRL_1",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "CURRENT_TRL",
+          "name": "CURRENT_TRL",
+          "basename": "CURRENT_TRL",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TRL-Out Level",
+          "name": "TRL-Out Level",
+          "basename": "TRL-Out Level",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "VIEW_COUNT",
+          "name": "VIEW_COUNT",
+          "basename": "VIEW_COUNT",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED",
+          "name": "TX_EXTRACTED",
+          "basename": "TX_EXTRACTED",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          },
+          "offset": 0
+        },
+        {
+          "fid": "gw_mea_val_fid",
+          "name": "Measure values",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "START_TRL",
+          "dragId": "GW_4xyw5YGm",
+          "offset": 0
+        },
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "END_TRL",
+          "dragId": "GW_IbyAW5Yw",
+          "offset": 0
+        }
+      ],
+      "rows": [
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          },
+          "offset": 0
+        }
+      ],
+      "columns": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_H2ZD",
+          "name": "Project Start Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_H2ZD",
+            "params": [
+              {
+                "type": "sql",
+                "value": "(year (start_date) )"
+              }
+            ]
+          },
+          "offset": 0
+        }
+      ],
+      "color": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_ON-r",
+          "name": "TX Base Level",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_ON-r",
+            "params": [
+              {
+                "type": "sql",
+                "value": "CAST(TX_EXTRACTED as INT)"
+              }
+            ]
+          },
+          "offset": 0
+        }
+      ],
+      "opacity": [],
+      "size": [],
+      "shape": [],
+      "radius": [],
+      "theta": [],
+      "longitude": [],
+      "latitude": [],
+      "geoId": [],
+      "details": [],
+      "filters": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_ON-r",
+          "name": "TX Base Level",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_ON-r",
+            "params": [
+              {
+                "type": "sql",
+                "value": "CAST(TX_EXTRACTED as INT)"
+              }
+            ]
+          },
+          "rule": {
+            "type": "not in",
+            "value": [
+              null
+            ]
+          },
+          "offset": 0
+        }
+      ],
+      "text": []
+    },
+    "layout": {
+      "showActions": false,
+      "showTableSummary": false,
+      "stack": "stack",
+      "interactiveScale": false,
+      "zeroScale": true,
+      "size": {
+        "mode": "auto",
+        "width": 320,
+        "height": 200
+      },
+      "format": {},
+      "geoKey": "name",
+      "resolve": {
+        "x": false,
+        "y": false,
+        "color": false,
+        "opacity": false,
+        "shape": false,
+        "size": false
+      }
+    },
+    "visId": "gw_tO10",
+    "name": "Number of Projects Started by Base Technology Taxonomy Level"
+  },
+  {
+    "config": {
+      "defaultAggregated": true,
+      "geoms": [
+        "auto"
+      ],
+      "coordSystem": "generic",
+      "limit": -1,
+      "timezoneDisplayOffset": 0
+    },
+    "encodings": {
+      "dimensions": [
+        {
+          "fid": "PROJECT_TITLE",
+          "name": "PROJECT_TITLE",
+          "basename": "PROJECT_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "ACRONYM",
+          "name": "ACRONYM",
+          "basename": "ACRONYM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "STATUS",
+          "name": "STATUS",
+          "basename": "STATUS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "DESCRIPTION",
+          "name": "DESCRIPTION",
+          "basename": "DESCRIPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "BENEFITS",
+          "name": "BENEFITS",
+          "basename": "BENEFITS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "IMAGE_CAPTION",
+          "name": "IMAGE_CAPTION",
+          "basename": "IMAGE_CAPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_PROGRAM",
+          "name": "RESPONSIBLE_PROGRAM",
+          "basename": "RESPONSIBLE_PROGRAM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "name": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "basename": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_DATE",
+          "name": "START_DATE",
+          "basename": "START_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "END_DATE",
+          "name": "END_DATE",
+          "basename": "END_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PRIMARY_TX",
+          "name": "PRIMARY_TX",
+          "basename": "PRIMARY_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "OTHER_TX",
+          "name": "OTHER_TX",
+          "basename": "OTHER_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROJECT_CONTACTS",
+          "name": "PROJECT_CONTACTS",
+          "basename": "PROJECT_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROGRAM_CONTACTS",
+          "name": "PROGRAM_CONTACTS",
+          "basename": "PROGRAM_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LEAD_ORGANIZATION",
+          "name": "LEAD_ORGANIZATION",
+          "basename": "LEAD_ORGANIZATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "name": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "basename": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TARGET_DESTINATIONS",
+          "name": "TARGET_DESTINATIONS",
+          "basename": "TARGET_DESTINATIONS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TRANSITION_EVENTS",
+          "name": "TRANSITION_EVENTS",
+          "basename": "TRANSITION_EVENTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "CLOSEOUT_DOCUMENTATION",
+          "name": "CLOSEOUT_DOCUMENTATION",
+          "basename": "CLOSEOUT_DOCUMENTATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LAST_MODIFIED",
+          "name": "LAST_MODIFIED",
+          "basename": "LAST_MODIFIED",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_4H5C",
+          "name": "Project End Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_4H5C",
+            "params": [
+              {
+                "type": "sql",
+                "value": "Year(END_DATE)"
+              }
+            ]
+          },
+          "offset": 0
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_Ci3_",
+          "name": "TX Base Level",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_Ci3_",
+            "params": [
+              {
+                "type": "sql",
+                "value": "CAST(TX_EXTRACTED as INT)"
+              }
+            ]
+          },
+          "offset": 0
+        },
+        {
+          "fid": "VIEW_COUNT",
+          "name": "VIEW_COUNT",
+          "basename": "VIEW_COUNT",
+          "analyticType": "dimension",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "gw_mea_key_fid",
+          "name": "Measure names",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "offset": 0
+        }
+      ],
+      "measures": [
+        {
+          "fid": "START_TRL_1",
+          "name": "START_TRL_1",
+          "basename": "START_TRL_1",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "CURRENT_TRL",
+          "name": "CURRENT_TRL",
+          "basename": "CURRENT_TRL",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TRL-Out Level",
+          "name": "TRL-Out Level",
+          "basename": "TRL-Out Level",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED",
+          "name": "TX_EXTRACTED",
+          "basename": "TX_EXTRACTED",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          },
+          "offset": 0
+        },
+        {
+          "fid": "gw_mea_val_fid",
+          "name": "Measure values",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "START_TRL",
+          "dragId": "GW_5cZiGH7J",
+          "offset": 0
+        },
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "END_TRL",
+          "dragId": "GW_9ycl4QHC",
+          "offset": 0
+        }
+      ],
+      "rows": [
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          },
+          "offset": 0
+        }
+      ],
+      "columns": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_4H5C",
+          "name": "Project End Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_4H5C",
+            "params": [
+              {
+                "type": "sql",
+                "value": "Year(END_DATE)"
+              }
+            ]
+          },
+          "offset": 0
+        }
+      ],
+      "color": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_Ci3_",
+          "name": "TX Base Level",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_Ci3_",
+            "params": [
+              {
+                "type": "sql",
+                "value": "CAST(TX_EXTRACTED as INT)"
+              }
+            ]
+          },
+          "offset": 0
+        }
+      ],
+      "opacity": [],
+      "size": [],
+      "shape": [],
+      "radius": [],
+      "theta": [],
+      "longitude": [],
+      "latitude": [],
+      "geoId": [],
+      "details": [],
+      "filters": [
+        {
+          "fid": "STATUS",
+          "name": "STATUS",
+          "basename": "STATUS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0,
+          "rule": {
+            "type": "one of",
+            "value": [
+              "Active"
+            ]
+          }
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_Ci3_",
+          "name": "TX Base Level",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_Ci3_",
+            "params": [
+              {
+                "type": "sql",
+                "value": "CAST(TX_EXTRACTED as INT)"
+              }
+            ]
+          },
+          "rule": {
+            "type": "not in",
+            "value": [
+              null
+            ]
+          },
+          "offset": 0
+        }
+      ],
+      "text": []
+    },
+    "layout": {
+      "showActions": false,
+      "showTableSummary": false,
+      "stack": "stack",
+      "interactiveScale": false,
+      "zeroScale": true,
+      "size": {
+        "mode": "auto",
+        "width": 320,
+        "height": 200
+      },
+      "format": {},
+      "geoKey": "name",
+      "resolve": {
+        "x": false,
+        "y": false,
+        "color": false,
+        "opacity": false,
+        "shape": false,
+        "size": false
+      }
+    },
+    "visId": "gw_DBNi",
+    "name": "Number of Projects Ongoing by Base Technology Taxonomy Level"
+  },
+  {
+    "config": {
+      "defaultAggregated": true,
+      "geoms": [
+        "rect"
+      ],
+      "coordSystem": "generic",
+      "limit": -1,
+      "timezoneDisplayOffset": 0
+    },
+    "encodings": {
+      "dimensions": [
+        {
+          "fid": "PROJECT_TITLE",
+          "name": "PROJECT_TITLE",
+          "basename": "PROJECT_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "ACRONYM",
+          "name": "ACRONYM",
+          "basename": "ACRONYM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "STATUS",
+          "name": "STATUS",
+          "basename": "STATUS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "DESCRIPTION",
+          "name": "DESCRIPTION",
+          "basename": "DESCRIPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "BENEFITS",
+          "name": "BENEFITS",
+          "basename": "BENEFITS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "IMAGE_CAPTION",
+          "name": "IMAGE_CAPTION",
+          "basename": "IMAGE_CAPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_PROGRAM",
+          "name": "RESPONSIBLE_PROGRAM",
+          "basename": "RESPONSIBLE_PROGRAM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "name": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "basename": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_DATE",
+          "name": "START_DATE",
+          "basename": "START_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "END_DATE",
+          "name": "END_DATE",
+          "basename": "END_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PRIMARY_TX",
+          "name": "PRIMARY_TX",
+          "basename": "PRIMARY_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "OTHER_TX",
+          "name": "OTHER_TX",
+          "basename": "OTHER_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROJECT_CONTACTS",
+          "name": "PROJECT_CONTACTS",
+          "basename": "PROJECT_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROGRAM_CONTACTS",
+          "name": "PROGRAM_CONTACTS",
+          "basename": "PROGRAM_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LEAD_ORGANIZATION",
+          "name": "LEAD_ORGANIZATION",
+          "basename": "LEAD_ORGANIZATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "name": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "basename": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TARGET_DESTINATIONS",
+          "name": "TARGET_DESTINATIONS",
+          "basename": "TARGET_DESTINATIONS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TRANSITION_EVENTS",
+          "name": "TRANSITION_EVENTS",
+          "basename": "TRANSITION_EVENTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "CLOSEOUT_DOCUMENTATION",
+          "name": "CLOSEOUT_DOCUMENTATION",
+          "basename": "CLOSEOUT_DOCUMENTATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LAST_MODIFIED",
+          "name": "LAST_MODIFIED",
+          "basename": "LAST_MODIFIED",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_MQVh",
+          "name": "Project Start Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_MQVh",
+            "params": [
+              {
+                "type": "sql",
+                "value": "(year (start_date) )"
+              }
+            ]
+          },
+          "offset": 0
+        },
+        {
+          "fid": "gw_LGTw",
+          "name": "Technology Taxonomy Level",
+          "semanticType": "ordinal",
+          "analyticType": "dimension",
+          "computed": true,
+          "expression": {
+            "op": "bin",
+            "as": "gw_LGTw",
+            "params": [
+              {
+                "type": "field",
+                "value": "TX_EXTRACTED"
+              }
+            ],
+            "num": 170
+          },
+          "offset": 0
+        },
+        {
+          "fid": "gw_mea_key_fid",
+          "name": "Measure names",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "offset": 0
+        }
+      ],
+      "measures": [
+        {
+          "fid": "START_TRL_1",
+          "name": "START_TRL_1",
+          "basename": "START_TRL_1",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "CURRENT_TRL",
+          "name": "CURRENT_TRL",
+          "basename": "CURRENT_TRL",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TRL-Out Level",
+          "name": "TRL-Out Level",
+          "basename": "TRL-Out Level",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "VIEW_COUNT",
+          "name": "VIEW_COUNT",
+          "basename": "VIEW_COUNT",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED",
+          "name": "TX_EXTRACTED",
+          "basename": "TX_EXTRACTED",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          },
+          "offset": 0
+        },
+        {
+          "fid": "gw_mea_val_fid",
+          "name": "Measure values",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "START_TRL",
+          "dragId": "GW_W48oswVE",
+          "offset": 0
+        },
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "END_TRL",
+          "dragId": "GW_0EvKd2Xg",
+          "offset": 0
+        }
+      ],
+      "rows": [
+        {
+          "fid": "gw_LGTw",
+          "name": "Technology Taxonomy Level",
+          "semanticType": "ordinal",
+          "analyticType": "dimension",
+          "computed": true,
+          "expression": {
+            "op": "bin",
+            "as": "gw_LGTw",
+            "params": [
+              {
+                "type": "field",
+                "value": "TX_EXTRACTED"
+              }
+            ],
+            "num": 170
+          },
+          "offset": 0
+        }
+      ],
+      "columns": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_MQVh",
+          "name": "Project Start Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_MQVh",
+            "params": [
+              {
+                "type": "sql",
+                "value": "(year (start_date) )"
+              }
+            ]
+          },
+          "offset": 0
+        }
+      ],
+      "color": [
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          },
+          "offset": 0
+        }
+      ],
+      "opacity": [],
+      "size": [],
+      "shape": [],
+      "radius": [],
+      "theta": [],
+      "longitude": [],
+      "latitude": [],
+      "geoId": [],
+      "details": [],
+      "filters": [],
+      "text": []
+    },
+    "layout": {
+      "showActions": false,
+      "showTableSummary": false,
+      "stack": "stack",
+      "interactiveScale": false,
+      "zeroScale": true,
+      "size": {
+        "mode": "fixed",
+        "width": 800,
+        "height": 500
+      },
+      "format": {},
+      "geoKey": "name",
+      "resolve": {
+        "x": false,
+        "y": false,
+        "color": false,
+        "opacity": false,
+        "shape": false,
+        "size": false
+      }
+    },
+    "visId": "gw_AHiW",
+    "name": "Number of Projects Started by Technology Taxonomy Level Annually"
+  },
+  {
+    "config": {
+      "defaultAggregated": true,
+      "geoms": [
+        "rect"
+      ],
+      "coordSystem": "generic",
+      "limit": -1,
+      "timezoneDisplayOffset": 0
+    },
+    "encodings": {
+      "dimensions": [
+        {
+          "fid": "PROJECT_TITLE",
+          "name": "PROJECT_TITLE",
+          "basename": "PROJECT_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "ACRONYM",
+          "name": "ACRONYM",
+          "basename": "ACRONYM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "STATUS",
+          "name": "STATUS",
+          "basename": "STATUS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "DESCRIPTION",
+          "name": "DESCRIPTION",
+          "basename": "DESCRIPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "BENEFITS",
+          "name": "BENEFITS",
+          "basename": "BENEFITS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "IMAGE_CAPTION",
+          "name": "IMAGE_CAPTION",
+          "basename": "IMAGE_CAPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_PROGRAM",
+          "name": "RESPONSIBLE_PROGRAM",
+          "basename": "RESPONSIBLE_PROGRAM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "name": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "basename": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_DATE",
+          "name": "START_DATE",
+          "basename": "START_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "END_DATE",
+          "name": "END_DATE",
+          "basename": "END_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PRIMARY_TX",
+          "name": "PRIMARY_TX",
+          "basename": "PRIMARY_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "OTHER_TX",
+          "name": "OTHER_TX",
+          "basename": "OTHER_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROJECT_CONTACTS",
+          "name": "PROJECT_CONTACTS",
+          "basename": "PROJECT_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROGRAM_CONTACTS",
+          "name": "PROGRAM_CONTACTS",
+          "basename": "PROGRAM_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LEAD_ORGANIZATION",
+          "name": "LEAD_ORGANIZATION",
+          "basename": "LEAD_ORGANIZATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "name": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "basename": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TARGET_DESTINATIONS",
+          "name": "TARGET_DESTINATIONS",
+          "basename": "TARGET_DESTINATIONS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TRANSITION_EVENTS",
+          "name": "TRANSITION_EVENTS",
+          "basename": "TRANSITION_EVENTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "CLOSEOUT_DOCUMENTATION",
+          "name": "CLOSEOUT_DOCUMENTATION",
+          "basename": "CLOSEOUT_DOCUMENTATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LAST_MODIFIED",
+          "name": "LAST_MODIFIED",
+          "basename": "LAST_MODIFIED",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_s3Bs",
+          "name": "Project End Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_s3Bs",
+            "params": [
+              {
+                "type": "sql",
+                "value": "(year (end_date) )"
+              }
+            ]
+          },
+          "offset": 0
+        },
+        {
+          "fid": "gw_ZC4N",
+          "name": "Technology Taxonomy Level",
+          "semanticType": "ordinal",
+          "analyticType": "dimension",
+          "computed": true,
+          "expression": {
+            "op": "bin",
+            "as": "gw_ZC4N",
+            "params": [
+              {
+                "type": "field",
+                "value": "TX_EXTRACTED"
+              }
+            ],
+            "num": 170
+          },
+          "offset": 0
+        },
+        {
+          "fid": "gw_mea_key_fid",
+          "name": "Measure names",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "offset": 0
+        }
+      ],
+      "measures": [
+        {
+          "fid": "START_TRL_1",
+          "name": "START_TRL_1",
+          "basename": "START_TRL_1",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "CURRENT_TRL",
+          "name": "CURRENT_TRL",
+          "basename": "CURRENT_TRL",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TRL-Out Level",
+          "name": "TRL-Out Level",
+          "basename": "TRL-Out Level",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "VIEW_COUNT",
+          "name": "VIEW_COUNT",
+          "basename": "VIEW_COUNT",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED",
+          "name": "TX_EXTRACTED",
+          "basename": "TX_EXTRACTED",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          },
+          "offset": 0
+        },
+        {
+          "fid": "gw_mea_val_fid",
+          "name": "Measure values",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "START_TRL",
+          "dragId": "GW_zavtWsfF",
+          "offset": 0
+        },
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "END_TRL",
+          "dragId": "GW_hiwlEeZp",
+          "offset": 0
+        }
+      ],
+      "rows": [
+        {
+          "fid": "gw_ZC4N",
+          "name": "Technology Taxonomy Level",
+          "semanticType": "ordinal",
+          "analyticType": "dimension",
+          "computed": true,
+          "expression": {
+            "op": "bin",
+            "as": "gw_ZC4N",
+            "params": [
+              {
+                "type": "field",
+                "value": "TX_EXTRACTED"
+              }
+            ],
+            "num": 170
+          },
+          "offset": 0
+        }
+      ],
+      "columns": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_s3Bs",
+          "name": "Project End Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_s3Bs",
+            "params": [
+              {
+                "type": "sql",
+                "value": "(year (end_date) )"
+              }
+            ]
+          },
+          "offset": 0
+        }
+      ],
+      "color": [
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          },
+          "offset": 0
+        }
+      ],
+      "opacity": [],
+      "size": [],
+      "shape": [],
+      "radius": [],
+      "theta": [],
+      "longitude": [],
+      "latitude": [],
+      "geoId": [],
+      "details": [],
+      "filters": [
+        {
+          "fid": "STATUS",
+          "name": "STATUS",
+          "basename": "STATUS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0,
+          "rule": {
+            "type": "one of",
+            "value": [
+              "Active"
+            ]
+          }
+        }
+      ],
+      "text": []
+    },
+    "layout": {
+      "showActions": false,
+      "showTableSummary": false,
+      "stack": "stack",
+      "interactiveScale": false,
+      "zeroScale": true,
+      "size": {
+        "mode": "fixed",
+        "width": 800,
+        "height": 500
+      },
+      "format": {},
+      "geoKey": "name",
+      "resolve": {
+        "x": false,
+        "y": false,
+        "color": false,
+        "opacity": false,
+        "shape": false,
+        "size": false
+      }
+    },
+    "visId": "gw_2bjO",
+    "name": "Number of Projects Ongoing by Technology Taxonomy Level Annually"
+  },
+  {
+    "config": {
+      "defaultAggregated": true,
+      "geoms": [
+        "auto"
+      ],
+      "coordSystem": "generic",
+      "limit": -1,
+      "timezoneDisplayOffset": 0
+    },
+    "encodings": {
+      "dimensions": [
+        {
+          "fid": "PROJECT_TITLE",
+          "name": "PROJECT_TITLE",
+          "basename": "PROJECT_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "ACRONYM",
+          "name": "ACRONYM",
+          "basename": "ACRONYM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "STATUS",
+          "name": "STATUS",
+          "basename": "STATUS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "DESCRIPTION",
+          "name": "DESCRIPTION",
+          "basename": "DESCRIPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "BENEFITS",
+          "name": "BENEFITS",
+          "basename": "BENEFITS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "IMAGE_CAPTION",
+          "name": "IMAGE_CAPTION",
+          "basename": "IMAGE_CAPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_PROGRAM",
+          "name": "RESPONSIBLE_PROGRAM",
+          "basename": "RESPONSIBLE_PROGRAM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "name": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "basename": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_DATE",
+          "name": "START_DATE",
+          "basename": "START_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "END_DATE",
+          "name": "END_DATE",
+          "basename": "END_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PRIMARY_TX",
+          "name": "PRIMARY_TX",
+          "basename": "PRIMARY_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "OTHER_TX",
+          "name": "OTHER_TX",
+          "basename": "OTHER_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROJECT_CONTACTS",
+          "name": "PROJECT_CONTACTS",
+          "basename": "PROJECT_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "basename": "START_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "PROGRAM_CONTACTS",
+          "name": "PROGRAM_CONTACTS",
+          "basename": "PROGRAM_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LEAD_ORGANIZATION",
+          "name": "LEAD_ORGANIZATION",
+          "basename": "LEAD_ORGANIZATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "name": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "basename": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TARGET_DESTINATIONS",
+          "name": "TARGET_DESTINATIONS",
+          "basename": "TARGET_DESTINATIONS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TRANSITION_EVENTS",
+          "name": "TRANSITION_EVENTS",
+          "basename": "TRANSITION_EVENTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "CLOSEOUT_DOCUMENTATION",
+          "name": "CLOSEOUT_DOCUMENTATION",
+          "basename": "CLOSEOUT_DOCUMENTATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LAST_MODIFIED",
+          "name": "LAST_MODIFIED",
+          "basename": "LAST_MODIFIED",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_lRTZ",
+          "name": "Project Start Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_lRTZ",
+            "params": [
+              {
+                "type": "sql",
+                "value": "Year(START_DATE)"
+              }
+            ]
+          }
+        },
+        {
+          "fid": "gw_mea_key_fid",
+          "name": "Measure names",
+          "analyticType": "dimension",
+          "semanticType": "nominal"
+        }
+      ],
+      "measures": [
+        {
+          "fid": "CURRENT_TRL",
+          "name": "CURRENT_TRL",
+          "basename": "CURRENT_TRL",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "basename": "END_TRL",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "VIEW_COUNT",
+          "name": "VIEW_COUNT",
+          "basename": "VIEW_COUNT",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED",
+          "name": "TX_EXTRACTED",
+          "basename": "TX_EXTRACTED",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          }
+        },
+        {
+          "fid": "gw_mea_val_fid",
+          "name": "Measure values",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum"
+        }
+      ],
+      "rows": [
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          }
+        }
+      ],
+      "columns": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_lRTZ",
+          "name": "Project Start Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_lRTZ",
+            "params": [
+              {
+                "type": "sql",
+                "value": "Year(START_DATE)"
+              }
+            ]
+          }
+        }
+      ],
+      "color": [
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "basename": "START_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0
+        }
+      ],
+      "opacity": [],
+      "size": [],
+      "shape": [],
+      "radius": [],
+      "theta": [],
+      "longitude": [],
+      "latitude": [],
+      "geoId": [],
+      "details": [],
+      "filters": [
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "basename": "START_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0,
+          "rule": {
+            "type": "not in",
+            "value": [
+              null
+            ]
+          }
+        }
+      ],
+      "text": []
+    },
+    "layout": {
+      "showActions": false,
+      "showTableSummary": false,
+      "stack": "stack",
+      "interactiveScale": false,
+      "zeroScale": true,
+      "size": {
+        "mode": "auto",
+        "width": 320,
+        "height": 200
+      },
+      "format": {},
+      "geoKey": "name",
+      "resolve": {
+        "x": false,
+        "y": false,
+        "color": false,
+        "opacity": false,
+        "shape": false,
+        "size": false
+      }
+    },
+    "visId": "gw_B276",
+    "name": "Number of Projects Started by TRL-In Level"
+  },
+  {
+    "config": {
+      "defaultAggregated": true,
+      "geoms": [
+        "auto"
+      ],
+      "coordSystem": "generic",
+      "limit": -1,
+      "timezoneDisplayOffset": 0
+    },
+    "encodings": {
+      "dimensions": [
+        {
+          "fid": "PROJECT_TITLE",
+          "name": "PROJECT_TITLE",
+          "basename": "PROJECT_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "ACRONYM",
+          "name": "ACRONYM",
+          "basename": "ACRONYM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "STATUS",
+          "name": "STATUS",
+          "basename": "STATUS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "DESCRIPTION",
+          "name": "DESCRIPTION",
+          "basename": "DESCRIPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "BENEFITS",
+          "name": "BENEFITS",
+          "basename": "BENEFITS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "IMAGE_CAPTION",
+          "name": "IMAGE_CAPTION",
+          "basename": "IMAGE_CAPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_PROGRAM",
+          "name": "RESPONSIBLE_PROGRAM",
+          "basename": "RESPONSIBLE_PROGRAM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "name": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "basename": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_DATE",
+          "name": "START_DATE",
+          "basename": "START_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "END_DATE",
+          "name": "END_DATE",
+          "basename": "END_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PRIMARY_TX",
+          "name": "PRIMARY_TX",
+          "basename": "PRIMARY_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "OTHER_TX",
+          "name": "OTHER_TX",
+          "basename": "OTHER_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROJECT_CONTACTS",
+          "name": "PROJECT_CONTACTS",
+          "basename": "PROJECT_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "basename": "START_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "PROGRAM_CONTACTS",
+          "name": "PROGRAM_CONTACTS",
+          "basename": "PROGRAM_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LEAD_ORGANIZATION",
+          "name": "LEAD_ORGANIZATION",
+          "basename": "LEAD_ORGANIZATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "name": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "basename": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TARGET_DESTINATIONS",
+          "name": "TARGET_DESTINATIONS",
+          "basename": "TARGET_DESTINATIONS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TRANSITION_EVENTS",
+          "name": "TRANSITION_EVENTS",
+          "basename": "TRANSITION_EVENTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "CLOSEOUT_DOCUMENTATION",
+          "name": "CLOSEOUT_DOCUMENTATION",
+          "basename": "CLOSEOUT_DOCUMENTATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "basename": "END_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "LAST_MODIFIED",
+          "name": "LAST_MODIFIED",
+          "basename": "LAST_MODIFIED",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_lRTZ",
+          "name": "Project Start Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_lRTZ",
+            "params": [
+              {
+                "type": "sql",
+                "value": "Year(START_DATE)"
+              }
+            ]
+          }
+        },
+        {
+          "fid": "gw_mea_key_fid",
+          "name": "Measure names",
+          "analyticType": "dimension",
+          "semanticType": "nominal"
+        }
+      ],
+      "measures": [
+        {
+          "fid": "CURRENT_TRL",
+          "name": "CURRENT_TRL",
+          "basename": "CURRENT_TRL",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "VIEW_COUNT",
+          "name": "VIEW_COUNT",
+          "basename": "VIEW_COUNT",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED",
+          "name": "TX_EXTRACTED",
+          "basename": "TX_EXTRACTED",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          }
+        },
+        {
+          "fid": "gw_mea_val_fid",
+          "name": "Measure values",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum"
+        }
+      ],
+      "rows": [
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          }
+        }
+      ],
+      "columns": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_lRTZ",
+          "name": "Project Start Year",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_lRTZ",
+            "params": [
+              {
+                "type": "sql",
+                "value": "Year(START_DATE)"
+              }
+            ]
+          }
+        }
+      ],
+      "color": [
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "basename": "END_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0
+        }
+      ],
+      "opacity": [],
+      "size": [],
+      "shape": [],
+      "radius": [],
+      "theta": [],
+      "longitude": [],
+      "latitude": [],
+      "geoId": [],
+      "details": [],
+      "filters": [
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "basename": "END_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0,
+          "rule": {
+            "type": "not in",
+            "value": [
+              null
+            ]
+          }
+        }
+      ],
+      "text": []
+    },
+    "layout": {
+      "showActions": false,
+      "showTableSummary": false,
+      "stack": "stack",
+      "interactiveScale": false,
+      "zeroScale": true,
+      "size": {
+        "mode": "auto",
+        "width": 320,
+        "height": 200
+      },
+      "format": {},
+      "geoKey": "name",
+      "resolve": {
+        "x": false,
+        "y": false,
+        "color": false,
+        "opacity": false,
+        "shape": false,
+        "size": false
+      }
+    },
+    "visId": "gw_AR96",
+    "name": "Number of Projects Started by TRL-Out Level"
+  },
+  {
+    "config": {
+      "defaultAggregated": false,
+      "geoms": [
+        "circle"
+      ],
+      "coordSystem": "generic",
+      "limit": -1,
+      "timezoneDisplayOffset": 0
+    },
+    "encodings": {
+      "dimensions": [
+        {
+          "fid": "PROJECT_TITLE",
+          "name": "PROJECT_TITLE",
+          "basename": "PROJECT_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "ACRONYM",
+          "name": "ACRONYM",
+          "basename": "ACRONYM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "STATUS",
+          "name": "STATUS",
+          "basename": "STATUS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "DESCRIPTION",
+          "name": "DESCRIPTION",
+          "basename": "DESCRIPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "BENEFITS",
+          "name": "BENEFITS",
+          "basename": "BENEFITS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "IMAGE_CAPTION",
+          "name": "IMAGE_CAPTION",
+          "basename": "IMAGE_CAPTION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_PROGRAM",
+          "name": "RESPONSIBLE_PROGRAM",
+          "basename": "RESPONSIBLE_PROGRAM",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "name": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "basename": "RESPONSIBLE_MISSION_DIRECTORATE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_DATE",
+          "name": "START_DATE",
+          "basename": "START_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "END_DATE",
+          "name": "END_DATE",
+          "basename": "END_DATE",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PRIMARY_TX",
+          "name": "PRIMARY_TX",
+          "basename": "PRIMARY_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "OTHER_TX",
+          "name": "OTHER_TX",
+          "basename": "OTHER_TX",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROJECT_CONTACTS",
+          "name": "PROJECT_CONTACTS",
+          "basename": "PROJECT_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "PROGRAM_CONTACTS",
+          "name": "PROGRAM_CONTACTS",
+          "basename": "PROGRAM_CONTACTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LEAD_ORGANIZATION",
+          "name": "LEAD_ORGANIZATION",
+          "basename": "LEAD_ORGANIZATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "name": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "basename": "LOCATIONS_WHERE_WORK_IS_PERFORMED",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TARGET_DESTINATIONS",
+          "name": "TARGET_DESTINATIONS",
+          "basename": "TARGET_DESTINATIONS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "TRANSITION_EVENTS",
+          "name": "TRANSITION_EVENTS",
+          "basename": "TRANSITION_EVENTS",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "CLOSEOUT_DOCUMENTATION",
+          "name": "CLOSEOUT_DOCUMENTATION",
+          "basename": "CLOSEOUT_DOCUMENTATION",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "basename": "START_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "basename": "END_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "LAST_MODIFIED",
+          "name": "LAST_MODIFIED",
+          "basename": "LAST_MODIFIED",
+          "semanticType": "temporal",
+          "analyticType": "dimension",
+          "offset": 0
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_ofcx",
+          "name": "TX Base Level",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_ofcx",
+            "params": [
+              {
+                "type": "sql",
+                "value": "CAST(TX_EXTRACTED as INT)"
+              }
+            ]
+          }
+        },
+        {
+          "fid": "gw_mea_key_fid",
+          "name": "Measure names",
+          "analyticType": "dimension",
+          "semanticType": "nominal"
+        }
+      ],
+      "measures": [
+        {
+          "fid": "CURRENT_TRL",
+          "name": "CURRENT_TRL",
+          "basename": "CURRENT_TRL",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "VIEW_COUNT",
+          "name": "VIEW_COUNT",
+          "basename": "VIEW_COUNT",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED",
+          "name": "TX_EXTRACTED",
+          "basename": "TX_EXTRACTED",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "offset": 0
+        },
+        {
+          "fid": "gw_count_fid",
+          "name": "Row count",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum",
+          "computed": true,
+          "expression": {
+            "op": "one",
+            "params": [],
+            "as": "gw_count_fid"
+          }
+        },
+        {
+          "fid": "gw_mea_val_fid",
+          "name": "Measure values",
+          "analyticType": "measure",
+          "semanticType": "quantitative",
+          "aggName": "sum"
+        }
+      ],
+      "rows": [
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "basename": "END_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0
+        }
+      ],
+      "columns": [
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "basename": "START_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0
+        }
+      ],
+      "color": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_ofcx",
+          "name": "TX Base Level",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_ofcx",
+            "params": [
+              {
+                "type": "sql",
+                "value": "CAST(TX_EXTRACTED as INT)"
+              }
+            ]
+          }
+        }
+      ],
+      "opacity": [],
+      "size": [
+        {
+          "analyticType": "dimension",
+          "fid": "gw_ofcx",
+          "name": "TX Base Level",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_ofcx",
+            "params": [
+              {
+                "type": "sql",
+                "value": "CAST(TX_EXTRACTED as INT)"
+              }
+            ]
+          }
+        }
+      ],
+      "shape": [],
+      "radius": [],
+      "theta": [],
+      "longitude": [],
+      "latitude": [],
+      "geoId": [],
+      "details": [],
+      "filters": [
+        {
+          "fid": "START_TRL",
+          "name": "START_TRL",
+          "basename": "START_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0,
+          "rule": {
+            "type": "not in",
+            "value": [
+              null
+            ]
+          }
+        },
+        {
+          "fid": "END_TRL",
+          "name": "END_TRL",
+          "basename": "END_TRL",
+          "analyticType": "dimension",
+          "semanticType": "nominal",
+          "aggName": "sum",
+          "offset": 0,
+          "rule": {
+            "type": "not in",
+            "value": [
+              null
+            ]
+          }
+        },
+        {
+          "analyticType": "dimension",
+          "fid": "gw_ofcx",
+          "name": "TX Base Level",
+          "semanticType": "nominal",
+          "computed": true,
+          "expression": {
+            "op": "expr",
+            "as": "gw_ofcx",
+            "params": [
+              {
+                "type": "sql",
+                "value": "CAST(TX_EXTRACTED as INT)"
+              }
+            ]
+          },
+          "rule": {
+            "type": "not in",
+            "value": [
+              null
+            ]
+          }
+        }
+      ],
+      "text": []
+    },
+    "layout": {
+      "showActions": false,
+      "showTableSummary": false,
+      "stack": "stack",
+      "interactiveScale": false,
+      "zeroScale": true,
+      "size": {
+        "mode": "fixed",
+        "height": 500,
+        "width": 800
+      },
+      "format": {},
+      "geoKey": "name",
+      "resolve": {
+        "x": false,
+        "y": false,
+        "color": false,
+        "opacity": false,
+        "shape": false,
+        "size": false
+      }
+    },
+    "visId": "gw_jK3i",
+    "name": "TRL Levels Based on Taxonomy Levels"
+  }
+]

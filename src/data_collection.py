@@ -12,6 +12,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from utils.data_utils import extract_tx_level, encode_locations, encode_status, normalize_views
 
 
 class TechportScraper:
@@ -92,17 +93,38 @@ class TechportData(Dataset):
     def __init__(self, conn):
         self.conn = conn
         self.bucket = "astra-data-bucket"
-        self.file_name = "update_3_merged_with_views_scraped.csv"
+        self.file_name = "load_data_after_scrape.csv"
 
     def load_data(self):
-        df = self.conn.read(self.bucket + '/' + self.file_name,
-                            input_format="csv", ttl=600)
+        '''
+        data for users in streamlit from techport scraped data
+        '''
+        with self.conn.open(self.bucket + '/' + self.file_name, "rb", encoding='utf-8') as f:
+            df = pd.read_csv(f)
         df.set_index('PROJECT_ID', inplace=True)
+        
+        # make sure date cols are datetime types
+        date_time_cols = ['START_DATE', 'END_DATE', 'LAST_MODIFIED']
+        for col in date_time_cols:
+            df[col] = pd.to_datetime(df[col])
+        
+        # make tx level readable
+        df = extract_tx_level(df)
+
         return df
 
     def load_processed_data(self):
+        '''
+        process data for backend use
+        '''
         df = self.load_data()
-        # TODO: Add processing steps here
+
+        df = encode_locations(df)
+        df = encode_status(df)
+
+        # params - df, lower bound, upper bound
+        df = normalize_views(df, 0, 1)
+
         return df
 
 
