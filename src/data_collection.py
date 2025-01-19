@@ -117,13 +117,12 @@ class TechportData(Dataset):
         '''
         process data for backend use
         '''
-        df = self.load_data()
-
-        df = encode_locations(df)
-        df = encode_status(df)
-
-        # params - df, lower bound, upper bound
-        df = normalize_views(df, 0, 1)
+        df = (
+            self.load_data()
+            .pipe(encode_locations)
+            .pipe(encode_status)
+            .pipe(normalize_views, 0, 1)
+        ) 
 
         return df
 
