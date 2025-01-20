@@ -124,7 +124,14 @@ def normalize_views(dataframe, lower, upper):
     
     return dataframe
 
+def df_columns_mapping(df):
+    '''
+    given a dataframe df
+    get a dictionary mapping of col names to their list of values
+    '''
+    return {col: df[col] for col in df.columns.to_list()}
 
+def create_lambda_function(formula):
     '''
     formula: string representation of a formula
     return a lambda function that takes in a dictionary mapping
