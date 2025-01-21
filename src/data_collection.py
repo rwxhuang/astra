@@ -13,6 +13,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from utils.data_utils import extract_tx_level, encode_locations, encode_status, normalize_views
+from sklearn.preprocessing import MinMaxScaler
 
 
 class TechportScraper:
@@ -102,12 +103,12 @@ class TechportData(Dataset):
         with self.conn.open(self.bucket + '/' + self.file_name, "rb", encoding='utf-8') as f:
             df = pd.read_csv(f)
         df.set_index('PROJECT_ID', inplace=True)
-        
+
         # make sure date cols are datetime types
         date_time_cols = ['START_DATE', 'END_DATE', 'LAST_MODIFIED']
         for col in date_time_cols:
             df[col] = pd.to_datetime(df[col])
-        
+
         # make tx level readable
         df = extract_tx_level(df)
 
@@ -122,7 +123,7 @@ class TechportData(Dataset):
             .pipe(encode_locations)
             .pipe(encode_status)
             .pipe(normalize_views, 0, 1)
-        ) 
+        )
 
         return df
 
@@ -147,10 +148,23 @@ class SBIRData(Dataset):
     def load_data(self):
         df = self.conn.read(self.bucket + '/' + self.file_name,
                             input_format="csv", ttl=600)
+        # Modify column names (all uppercase + connect with underscores)
+        df.columns = df.columns.str.upper().str.replace(' ', '_')
         return df
 
     def load_processed_data(self):
         df = self.load_data()
+
+        # Normalize columns
+        normal_columns = ['AWARD_AMOUNT', 'NUM_EMPLOYEES']
+        scaler = MinMaxScaler()
+        df[normal_columns] = scaler.fit_transform(df[normal_columns])
+       
+        # Encode columns to binary
+        binary_columns = ['SOCIAL_DISADVANTAGED', 'WOMEN_OWNED']
+        df[binary_columns] = df[binary_columns].apply(
+            lambda x: 1 if x > 10 else 0)
+
         return df
 
 
@@ -164,10 +178,14 @@ def get_astra_data(search_input):
     """
     # Fetch Techport data from S3
     conn = st.connection('s3', type=FilesConnection)
-    df = TechportData(conn).load_data()
+    techport = TechportData(conn).load_data()
+    sbir = SBIRData(conn).load_data()
     # TODO: merge TechportData(conn).load_data() with SBIRData(conn).load_data()
+    techport_and_sbir = pd.merge(
+        techport, sbir, on=['TITLE', 'START_YEAR', 'END_YEAR'], how='left')
+    # techport_and_sbir['AWARD_AMT'] = techport_and_sbir['AWARD_AMT'].str.replace(',', '').astype(float)
     if not search_input:
-        return df
+        return techport_and_sbir
     # Get Techport project ids
     scraper = TechportScraper(search_input)
     attempts = 0
@@ -181,5 +199,5 @@ def get_astra_data(search_input):
                 "The scraper took too long to run and couldn't find any results. Please try again.")
             project_ids = []
     # Filter the data
-    filtered_df = df.loc[list(project_ids)]
+    filtered_df = techport_and_sbir.loc[list(project_ids)]
     return filtered_df
