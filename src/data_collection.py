@@ -148,22 +148,26 @@ class SBIRData(Dataset):
     def load_data(self):
         df = self.conn.read(self.bucket + '/' + self.file_name,
                             input_format="csv", ttl=600)
-        # Modify column names (all uppercase + connect with underscores)
+        # Clean data
+        # column names (all uppercase + connect with underscores)
         df.columns = df.columns.str.upper().str.replace(' ', '_')
+        # AWARD_AMOUNT column into float values
+        df['AWARD_AMOUNT'] = df['AWARD_AMOUNT'].astype(str).replace(
+            ',', '').astype(float)
         return df
 
     def load_processed_data(self):
         df = self.load_data()
 
         # Normalize columns
-        normal_columns = ['AWARD_AMOUNT', 'NUM_EMPLOYEES']
+        normal_columns = ['AWARD_AMOUNT', 'NUMBER_EMPLOYEES']
         scaler = MinMaxScaler()
         df[normal_columns] = scaler.fit_transform(df[normal_columns])
-       
+
         # Encode columns to binary
         binary_columns = ['SOCIAL_DISADVANTAGED', 'WOMEN_OWNED']
         df[binary_columns] = df[binary_columns].apply(
-            lambda x: 1 if x > 10 else 0)
+            lambda x: 1 if x == 'Y' else 0)
 
         return df
 
@@ -183,7 +187,6 @@ def get_astra_data(search_input):
     # TODO: merge TechportData(conn).load_data() with SBIRData(conn).load_data()
     techport_and_sbir = pd.merge(
         techport, sbir, on=['TITLE', 'START_YEAR', 'END_YEAR'], how='left')
-    # techport_and_sbir['AWARD_AMT'] = techport_and_sbir['AWARD_AMT'].str.replace(',', '').astype(float)
     if not search_input:
         return techport_and_sbir
     # Get Techport project ids
