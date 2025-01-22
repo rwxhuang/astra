@@ -143,7 +143,7 @@ class SBIRData(Dataset):
     def __init__(self, conn):
         self.conn = conn
         self.bucket = "astra-data-bucket"
-        self.file_name = "sbir_all.csv"
+        self.file_name = "sbir_no_abstract_all.csv"
 
     def load_data(self):
         df = self.conn.read(self.bucket + '/' + self.file_name,
@@ -182,11 +182,9 @@ def get_astra_data(search_input):
     """
     # Fetch Techport data from S3
     conn = st.connection('s3', type=FilesConnection)
-    techport = TechportData(conn).load_data()
-    sbir = SBIRData(conn).load_data()
     # TODO: merge TechportData(conn).load_data() with SBIRData(conn).load_data()
-    techport_and_sbir = pd.merge(
-        techport, sbir, on=['TITLE', 'START_YEAR', 'END_YEAR'], how='left')
+    techport_and_sbir = pd.merge(TechportData(conn).load_data(), SBIRData(
+        conn).load_data(), on=['TITLE', 'START_YEAR', 'END_YEAR'], how='left')
     if not search_input:
         return techport_and_sbir
     # Get Techport project ids
