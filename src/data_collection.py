@@ -12,7 +12,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from utils.data_utils import extract_tx_level, encode_locations, encode_status, normalize_views
+from utils.data_utils import extract_tx_level, encode_locations, encode_status, encode_tx_level, normalize_views
 
 
 class TechportScraper:
@@ -102,12 +102,12 @@ class TechportData(Dataset):
         with self.conn.open(self.bucket + '/' + self.file_name, "rb", encoding='utf-8') as f:
             df = pd.read_csv(f)
         df.set_index('PROJECT_ID', inplace=True)
-        
+
         # make sure date cols are datetime types
         date_time_cols = ['START_DATE', 'END_DATE', 'LAST_MODIFIED']
         for col in date_time_cols:
             df[col] = pd.to_datetime(df[col])
-        
+
         # make tx level readable
         df = extract_tx_level(df)
 
@@ -121,8 +121,9 @@ class TechportData(Dataset):
             self.load_data()
             .pipe(encode_locations)
             .pipe(encode_status)
+            .pipe(encode_tx_level)
             .pipe(normalize_views, 0, 1)
-        ) 
+        )
 
         return df
 
