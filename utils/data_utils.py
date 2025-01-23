@@ -1,5 +1,6 @@
 
 import numpy as np
+import math
 from sklearn.preprocessing import MinMaxScaler
 
 
@@ -167,11 +168,7 @@ def encode_tx_level(dataframe):
         vector = np.zeros(len(level_to_index), dtype=int)
 
         # if nan then skip and return empty vector
-        if math.isnan(level):
-            pass
-
-        else:
-            # change index corresponding to status to a 1
+        if not math.isnan(level):
             vector[level_to_index[level]] = 1
 
         return vector
