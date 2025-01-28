@@ -112,6 +112,13 @@ class TechportData(Dataset):
         # make tx level readable
         df = extract_tx_level(df)
 
+        # extract start and end year as new columns
+        df['START_YEAR'] = pd.to_datetime(df['START_DATE']).dt.year
+        df['END_YEAR'] = pd.to_datetime(df['END_DATE']).dt.year
+
+        # Change column name for merging
+        df = df.rename(columns={'PROJECT_TITLE': 'TITLE'})
+
         return df
 
     def load_processed_data(self):
@@ -146,14 +153,19 @@ class SBIRData(Dataset):
         self.file_name = "sbir_no_abstract_all.csv"
 
     def load_data(self):
-        df = self.conn.read(self.bucket + '/' + self.file_name,
-                            input_format="csv", ttl=600)
+        with self.conn.open(self.bucket + '/' + self.file_name, "rb", encoding='utf-8') as f:
+            df = pd.read_csv(f)
         # Clean data
         # column names (all uppercase + connect with underscores)
         df.columns = df.columns.str.upper().str.replace(' ', '_')
         # AWARD_AMOUNT column into float values
-        df['AWARD_AMOUNT'] = df['AWARD_AMOUNT'].astype(str).replace(
+        df['AWARD_AMOUNT'] = df['AWARD_AMOUNT'].str.replace(
             ',', '').astype(float)
+        # Extract start and end year as new columns
+        df['START_YEAR'] = pd.to_datetime(df['PROPOSAL_AWARD_DATE']).dt.year
+        df['END_YEAR'] = pd.to_datetime(df['CONTRACT_END_DATE']).dt.year
+        # Change column name for merging
+        df = df.rename(columns={'AWARD_TITLE': 'TITLE'})
         return df
 
     def load_processed_data(self):
@@ -165,10 +177,10 @@ class SBIRData(Dataset):
         df[normal_columns] = scaler.fit_transform(df[normal_columns])
 
         # Encode columns to binary
-        binary_columns = ['SOCIAL_DISADVANTAGED', 'WOMEN_OWNED']
-        df[binary_columns] = df[binary_columns].apply(
-            lambda x: 1 if x == 'Y' else 0)
-
+        binary_columns = [
+            'SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED', 'WOMEN_OWNED']
+        for b in binary_columns:
+            df[b] = df[b].apply(lambda x: 1 if x == "Y" else 0)
         return df
 
 
