@@ -12,7 +12,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from utils.data_utils import extract_tx_level, encode_locations, encode_status, normalize_views
+from utils.data_utils import extract_tx_level, encode_locations, encode_status, encode_tx_level, normalize_views
 from sklearn.preprocessing import MinMaxScaler
 
 
@@ -129,6 +129,7 @@ class TechportData(Dataset):
             self.load_data()
             .pipe(encode_locations)
             .pipe(encode_status)
+            .pipe(encode_tx_level)
             .pipe(normalize_views, 0, 1)
         )
 
