@@ -116,9 +116,6 @@ class TechportData(Dataset):
         df['START_YEAR'] = pd.to_datetime(df['START_DATE']).dt.year
         df['END_YEAR'] = pd.to_datetime(df['END_DATE']).dt.year
 
-        # Change column name for merging
-        df = df.rename(columns={'PROJECT_TITLE': 'TITLE'})
-
         return df
 
     def load_processed_data(self):
@@ -166,7 +163,7 @@ class SBIRData(Dataset):
         df['START_YEAR'] = pd.to_datetime(df['PROPOSAL_AWARD_DATE']).dt.year
         df['END_YEAR'] = pd.to_datetime(df['CONTRACT_END_DATE']).dt.year
         # Change column name for merging
-        df = df.rename(columns={'AWARD_TITLE': 'TITLE'})
+        df = df.rename(columns={'AWARD_TITLE': 'PROJECT_TITLE'})
         return df
 
     def load_processed_data(self):
@@ -197,7 +194,7 @@ def get_astra_data(search_input):
     conn = st.connection('s3', type=FilesConnection)
     # TODO: merge TechportData(conn).load_data() with SBIRData(conn).load_data()
     techport_and_sbir = pd.merge(TechportData(conn).load_data(), SBIRData(
-        conn).load_data(), on=['TITLE', 'START_YEAR', 'END_YEAR'], how='left')
+        conn).load_data(), on=['PROJECT_TITLE', 'START_YEAR', 'END_YEAR'], how='left')
     if not search_input:
         return techport_and_sbir
     # Get Techport project ids

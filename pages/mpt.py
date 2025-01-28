@@ -3,6 +3,7 @@ import pandas as pd
 
 from st_files_connection import FilesConnection
 from src.data_collection import TechportData
+from src.mpt_calc import get_mpt_investments
 from utils.mpt_utils import df_columns_mapping, create_lambda_function
 
 st.set_page_config(
@@ -78,3 +79,5 @@ with st.sidebar:
 
         # display the data as an editable table
         st.data_editor(min_max_df)
+
+st.write('Investments:', get_mpt_investments())
