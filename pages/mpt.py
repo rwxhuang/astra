@@ -6,9 +6,6 @@ from src.data_collection import TechportData, SBIRData
 from src.mpt_calc import get_mpt_investments
 from utils.mpt_utils import df_columns_mapping, create_lambda_function
 
-st.set_page_config(
-    layout="wide", initial_sidebar_state="expanded", page_icon='🛰️')
-
 st.header("Markowitz Portfolio Theory")
 
 with st.sidebar:
@@ -18,7 +15,7 @@ with st.sidebar:
 
     # get processed data to use as dataframe
     df = pd.merge(TechportData(conn).load_processed_data(),
-                  SBIRData(conn).load_data(),
+                  SBIRData(conn).load_processed_data(),
                   on=['PROJECT_TITLE', 'START_YEAR', 'END_YEAR'], how='left')
 
     ### Dataset Info ###

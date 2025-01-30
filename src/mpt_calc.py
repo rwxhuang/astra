@@ -40,7 +40,7 @@ def get_kmeans_cluster(df, cluster_cols, date_cols, encoded_cluster_cols, num_cl
         return a list of these values: [1, 0, 0, 0, 1, 0, 1]
         '''
         # get rid of \n and brackets
-        clean_str = one_hot_str.replace('\n', ' ').strip('[]')
+        clean_str = str(one_hot_str).replace('\n', ' ').strip('[]')
 
         # convert into a lsit
         return list(map(int, clean_str.split()))
@@ -89,11 +89,12 @@ def get_mpt_investments(df):
 
     # replace the missing award amounts with the mean of each cluster
     # get the average award amounts of each cluster
-    average_cluster_value = df.groupby('CLUSTER')['AWARD_AMT'].mean().to_dict()
+    average_cluster_value = df.groupby(
+        'CLUSTER')['AWARD_AMOUNT'].mean().to_dict()
 
     # replace nan's in award amount
-    df['AWARD_AMT'] = df.apply(lambda row: average_cluster_value[row['CLUSTER']] if pd.isna(
-        row['AWARD_AMT']) else row['AWARD_AMT'], axis=1)
+    df['AWARD_AMOUNT'] = df.apply(lambda row: average_cluster_value[row['CLUSTER']] if pd.isna(
+        row['AWARD_AMOUNT']) else row['AWARD_AMOUNT'], axis=1)
 
     # make performance col
     def calculate_performance(row):
@@ -106,7 +107,7 @@ def get_mpt_investments(df):
 
     # make utility col
     def calculate_utility(row):
-        return row['PERFORMANCE'] / row['AWARD_AMT']
+        return row['PERFORMANCE'] / row['AWARD_AMOUNT']
 
     df['UTILITY'] = df.apply(calculate_utility, axis=1)
 
