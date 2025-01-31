@@ -2,12 +2,10 @@ import streamlit as st
 import pandas as pd
 
 from st_files_connection import FilesConnection
-from src.data_collection import TechportData
+from src.data_collection import TechportData, SBIRData
 from src.mpt_calc import get_mpt_investments
 from utils.mpt_utils import df_columns_mapping, create_lambda_function
 
-st.set_page_config(
-    layout="wide", initial_sidebar_state="expanded", page_icon='🛰️')
 
 st.header("Markowitz Portfolio Theory")
 
@@ -17,8 +15,9 @@ with st.sidebar:
     conn = st.connection('s3', type=FilesConnection)
 
     # get processed data to use as dataframe
-    techport_data = TechportData(conn)
-    techport_df = techport_data.load_processed_data()
+    df = pd.merge(TechportData(conn).load_processed_data(),
+                  SBIRData(conn).load_data(),
+                  on=['PROJECT_TITLE', 'START_YEAR', 'END_YEAR'], how='left')
 
     ### Dataset Info ###
     st.header('Dataset Information')
@@ -28,8 +27,10 @@ with st.sidebar:
         st.text("Available Numerical Variables")
 
         # vars list
-        numerical_cols = techport_df.select_dtypes(
+        numerical_cols = df.select_dtypes(
             include=['int64', 'float64']).columns.tolist()
+        numerical_cols = [
+            col for col in numerical_cols if "unnamed" not in col.lower()]
         st.code("\n".join(numerical_cols))
 
         ### custom utility function ###
@@ -40,9 +41,9 @@ with st.sidebar:
             "Custom Formula Using Numerical Variables Above (UTILITY)", value=default)
 
         # custom function code
-        techport_df_columns = df_columns_mapping(techport_df)
+        techport_df_columns = df_columns_mapping(df)
         custom_function = create_lambda_function(formula_input)
-        techport_df['UTILITY'] = custom_function(**techport_df_columns)
+        df['UTILITY'] = custom_function(**techport_df_columns)
 
     ### Projects to Invest In ###
     st.header('Projects to Invest In')
@@ -60,7 +61,7 @@ with st.sidebar:
             projects_df = pd.read_csv(upload_project_file)
         else:
             # default
-            projects_df = techport_df.head(10)
+            projects_df = df.head(10)
 
         st.dataframe(projects_df)
 
@@ -78,6 +79,6 @@ with st.sidebar:
         )
 
         # display the data as an editable table
-        st.data_editor(min_max_df)
+        min_max_df = st.data_editor(min_max_df)
 
-st.write('Investments:', get_mpt_investments())
+st.write('Investments:', get_mpt_investments(df))
