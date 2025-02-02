@@ -29,6 +29,8 @@ with st.sidebar:
         # vars list
         numerical_cols = df.select_dtypes(
             include=['int64', 'float64']).columns.tolist()
+        numerical_cols = [
+            col for col in numerical_cols if "unnamed" not in col.lower()]
         st.code("\n".join(numerical_cols))
 
         ### custom utility function ###

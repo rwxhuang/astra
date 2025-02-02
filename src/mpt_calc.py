@@ -75,7 +75,7 @@ def get_kmeans_cluster(df, cluster_cols, date_cols, encoded_cluster_cols, num_cl
     return df
 
 
-def get_mpt_investments(df):
+def get_mu_cov_of_clusters(df):
     '''
     df: dataframe merged with techport and SBIR data
     returns a 10 x 7 matrix 
@@ -125,6 +125,13 @@ def get_mpt_investments(df):
     # get mean of clusters and covariance matrix
     mu = cluster_utilities.mean()
     cov = cluster_utilities.cov()
+
+    return (mu, cov)
+
+
+def get_mpt_investments(df):
+
+    mu, cov = get_mu_cov_of_clusters(df)
 
     # calculate min return
     ef_min = EfficientFrontier(mu, cov)
