@@ -143,7 +143,6 @@ def get_mpt_investments(df):
 
     # calculate portfolios
     ef_portfolio = EfficientFrontier(mu, cov)
-
     num_options = 10
     portfolio_options = np.linspace(min_return, max_return, num=num_options)
 
