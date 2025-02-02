@@ -9,8 +9,6 @@ import json
 # Initialize search_input in session state
 if 'search_input' not in st.session_state:
     st.session_state.search_input = ""
-st.set_page_config(
-    layout="wide", initial_sidebar_state="collapsed", page_icon='🛰️')
 
 # Body of the page
 st.header("Technology Project Data")

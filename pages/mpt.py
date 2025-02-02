@@ -4,6 +4,7 @@ import plotly.express as px
 
 from st_files_connection import FilesConnection
 from src.data_collection import TechportData
+# from src.mpt_calc import get_mpt_investments
 from utils.mpt_utils import df_columns_mapping, create_lambda_function
 
 st.set_page_config(
