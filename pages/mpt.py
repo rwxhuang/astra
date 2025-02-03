@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
 from st_files_connection import FilesConnection
 from src.data_collection import TechportData
@@ -114,15 +116,56 @@ pie_ch_data = {
     "Portfolio #8": [20, 10, 30, 15, 10, 5, 10],
     "Portfolio #9": [15, 20, 10, 10, 15, 10, 20],
     "Portfolio #10": [10, 10, 15, 10, 20, 20, 15]
+    
 }
 
 df_pie = pd.DataFrame(pie_ch_data)
 
-pie_charts = []
-for i in range(10):
-    fig_pie = px.pie(df_pie, names="Portfolio", values=f"Portfolio #{i+1}", title=f"Portfolio #{i+1}")
-    fig_pie.update_layout(height=350, width=350)
-    pie_charts.append(fig_pie)
+row_num = 5
+col_num = 2
+pie_chart_num = range(10)
+
+# Create a subplot figure with domain type for pie charts
+fig_pie = make_subplots(
+    rows=row_num, cols=col_num,
+    specs=[[{'type': 'domain'}] * col_num for _ in range(row_num)],
+    subplot_titles=[f"Portfolio #{i+1}" for i in pie_chart_num]
+)
+
+# Function to create pie charts
+def pie_chart(chart_num):
+    return go.Pie(
+        values=df_pie[f"Portfolio #{chart_num+1}"], labels=df_pie["Portfolio"],
+        showlegend=(chart_num==0)  # Show legend only for the first pie chart
+    )
+
+# Add pie charts to subplots
+row, col = 1, 1
+for i in pie_chart_num:
+    fig_pie.add_trace(pie_chart(i), row=row, col=col)
+    col += 1
+    if col > col_num:  # Move to next row after filling columns
+        col = 1
+        row += 1
+
+# Show legend
+fig_pie.update_traces(showlegend=True)
+
+# Update layout for better spacing
+fig_pie.update_layout(
+    height=1000,
+    width=800,
+    legend_title="Legend",
+    font=dict(size=12),
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.05,
+        xanchor="center",
+        x=0.5,
+        traceorder = 'normal'
+    )
+)
 
 # Proportional Stacked Bar Chart
 
@@ -135,6 +178,7 @@ stack_bar_ch_data = {
     "Cluster #5": [5, 5, 10, 20, 10, 10, 10, 10, 15, 20],
     "Cluster #6": [15, 10, 10, 25, 20, 15, 15, 5, 10, 20],
     "Cluster #7": [10, 10, 10, 10, 15, 10, 10, 10, 20, 15]
+    
 }
 
 df_stack_bar = pd.DataFrame(stack_bar_ch_data)
@@ -147,7 +191,7 @@ df_bar_normalized.reset_index(inplace=True)
 # melt data for plotly
 df_bar_melted = df_bar_normalized.melt(id_vars="Portfolio", var_name="Clusters", value_name="Percentage")
 
-fig_bar_prop = px.bar(
+fig_bar = px.bar(
     df_bar_melted,
     x="Portfolio",
     y="Percentage",
@@ -167,7 +211,7 @@ with col1:
     st.plotly_chart(fig_scatter, use_container_width=True)
 
     st.subheader("Portfolio Weights for each Portfolio")
-    st.plotly_chart(fig_bar_prop, use_container_width=True)
+    st.plotly_chart(fig_bar, use_container_width=True)
 
 # Column 2: 10 Pie Charts in Two Subcolumns (5 per column)
 with col2:
@@ -176,10 +220,12 @@ with col2:
     # Create two subcolumns inside column 2
     subcol1, subcol2 = st.columns(2)
 
-    for i, fig in enumerate(pie_charts):
-        if i < 5:  # First 5 pie charts go into subcol1
-            with subcol1:
-                st.plotly_chart(fig, use_container_width=False)
-        else:  # Next 5 pie charts go into subcol2
-            with subcol2:
-                st.plotly_chart(fig, use_container_width=False)
+    st.plotly_chart(fig_pie, use_container_width=True)
+    # for i, fig in enumerate(pie_charts):
+    #     if i < 5:  # First 5 pie charts go into subcol1
+    #         with subcol1:
+    #             st.plotly_chart(fig, use_container_width=False)
+    #     else:  # Next 5 pie charts go into subcol2
+    #         with subcol2:
+    #             st.plotly_chart(fig, use_container_width=False)
+
