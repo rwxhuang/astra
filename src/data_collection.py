@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import streamlit as st
 import time
 
@@ -94,7 +95,7 @@ class TechportData(Dataset):
     def __init__(self, conn):
         self.conn = conn
         self.bucket = "astra-data-bucket"
-        self.file_name = "load_data_after_scrape.csv"
+        self.file_name = "techport_all.csv"
 
     def load_data(self):
         '''
@@ -111,7 +112,6 @@ class TechportData(Dataset):
 
         # make tx level readable
         df = extract_tx_level(df)
-
         # extract start and end year as new columns
         df['START_YEAR'] = pd.to_datetime(df['START_DATE']).dt.year
         df['END_YEAR'] = pd.to_datetime(df['END_DATE']).dt.year
@@ -129,6 +129,12 @@ class TechportData(Dataset):
             .pipe(encode_tx_level)
             .pipe(normalize_views, 0, 1)
         )
+
+        # filter out rows with all null trl values
+        df = df[df['START_TRL'].notna() &
+                df['END_TRL'].notna() &
+                df['CURRENT_TRL'].notna()]
+        df['LOG_VIEW_COUNT'] = np.log(df['VIEW_COUNT'] + 1)
 
         return df
 
@@ -172,7 +178,8 @@ class SBIRData(Dataset):
         # Normalize columns
         normal_columns = ['AWARD_AMOUNT', 'NUMBER_EMPLOYEES']
         scaler = MinMaxScaler()
-        df[normal_columns] = scaler.fit_transform(df[normal_columns])
+        df[[col_name + '_NORMALIZED' for col_name in normal_columns]
+           ] = scaler.fit_transform(df[normal_columns])
 
         # Encode columns to binary
         binary_columns = [

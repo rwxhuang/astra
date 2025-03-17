@@ -33,21 +33,9 @@ def get_kmeans_cluster(df, cluster_cols, date_cols, encoded_cluster_cols, num_cl
     # get cols to add as dimensions for clustering
     cluster_df = df[cluster_cols]
 
-    # clean data for kmeans-cluster
-    def convert_to_list(one_hot_str):
-        '''
-        one_hot_str: string of form '[1 0 0 0 1 0 1]'
-        return a list of these values: [1, 0, 0, 0, 1, 0, 1]
-        '''
-        # get rid of \n and brackets
-        clean_str = str(one_hot_str).replace('\n', ' ').strip('[]')
-
-        # convert into a lsit
-        return list(map(int, clean_str.split()))
-
     for col in encoded_cluster_cols:
         # apply conversion from string to list on all cols
-        one_hot_data = cluster_df[col].apply(convert_to_list)
+        one_hot_data = cluster_df[col].apply(list)
         # for each entry in list, flatten into its own col
         one_hot_df = pd.DataFrame(one_hot_data.tolist(), columns=[
                                   f"{col}_{i}" for i in range(one_hot_data.iloc[0].__len__())])
@@ -82,10 +70,32 @@ def get_mu_cov_of_clusters(df):
     '''
 
     # assign each project a cluster grouping
-    df = get_kmeans_cluster(df, ['START_TRL', 'END_TRL', 'CURRENT_TRL', 'START_DATE', 'VIEW_COUNT_NORMALIZED',
-                                 'END_DATE', 'TX_LEVEL_ENCODED', 'LOCATIONS_ENCODED', 'STATUS_ENCODED', 'LAST_MODIFIED'],
-                            ["START_DATE", "END_DATE", "LAST_MODIFIED"],
-                            ['TX_LEVEL_ENCODED', 'LOCATIONS_ENCODED', 'STATUS_ENCODED'], 7)
+    df = get_kmeans_cluster(df,
+                            [
+                                'START_TRL',
+                                'END_TRL',
+                                'CURRENT_TRL',
+                                'START_DATE',
+                                'VIEW_COUNT_NORMALIZED',
+                                'NUMBER_EMPLOYEES_NORMALIZED',
+                                'END_DATE',
+                                'TX_LEVEL_ENCODED',
+                                'LOCATIONS_ENCODED',
+                                'STATUS_ENCODED',
+                                'LAST_MODIFIED'
+                            ],
+                            [
+                                "START_DATE",
+                                "END_DATE",
+                                "LAST_MODIFIED"
+                            ],
+                            [
+                                'TX_LEVEL_ENCODED',
+                                'LOCATIONS_ENCODED',
+                                'STATUS_ENCODED'
+                            ],
+                            7
+                            )
 
     # replace the missing award amounts with the mean of each cluster
     # get the average award amounts of each cluster
@@ -96,20 +106,8 @@ def get_mu_cov_of_clusters(df):
     df['AWARD_AMOUNT'] = df.apply(lambda row: average_cluster_value[row['CLUSTER']] if pd.isna(
         row['AWARD_AMOUNT']) else row['AWARD_AMOUNT'], axis=1)
 
-    # make performance col
-    def calculate_performance(row):
-        if np.isnan(row['END_TRL']) or np.isnan(row['START_TRL']):
-            return np.log(row['VIEW_COUNT_NORMALIZED'] + 1)
-        else:
-            return 0.5 * np.log(row['VIEW_COUNT_NORMALIZED'] + 1) + 0.5 * (row['END_TRL'] - row['START_TRL'])
-
-    df['PERFORMANCE'] = df.apply(calculate_performance, axis=1)
-
-    # make utility col
-    def calculate_utility(row):
-        return row['PERFORMANCE'] / row['AWARD_AMOUNT']
-
-    df['UTILITY'] = df.apply(calculate_utility, axis=1)
+    # df['PERFORMANCE'] = df.apply(calculate_performance, axis=1)
+    df['UTILITY'] = df['PERFORMANCE'] / df['AWARD_AMOUNT']
 
     # make same number of projects in each cluster
     min_count = df.groupby('CLUSTER').size().min()
@@ -126,12 +124,13 @@ def get_mu_cov_of_clusters(df):
     mu = cluster_utilities.mean()
     cov = cluster_utilities.cov()
 
-    return (mu, cov)
+    return df, mu, cov
 
 
 def get_mpt_investments(df):
 
-    mu, cov = get_mu_cov_of_clusters(df)
+    _, mu, cov = get_mu_cov_of_clusters(df)
+    print(mu, cov)
 
     # calculate min return
     ef_min = EfficientFrontier(mu, cov)
@@ -144,13 +143,15 @@ def get_mpt_investments(df):
     # calculate portfolios
     ef_portfolio = EfficientFrontier(mu, cov)
     num_options = 10
-    portfolio_options = np.linspace(min_return, max_return, num=num_options)
+    portfolio_returns = np.linspace(min_return, max_return, num=num_options)
 
     weights = [ef_portfolio.efficient_return(
-        portfolio) for portfolio in portfolio_options]
+        portfolio) for portfolio in portfolio_returns]
 
     # make a 10 x # of clusters matrix
     weights_matrix = np.array([list(weights.values()) for weights in weights])
-    columns = [i for i in range(len(weights_matrix[0]))]
 
-    return pd.DataFrame(weights_matrix, columns=columns)
+    # calculate risk
+    portfolio_risks = [sum([weights_matrix[i][j] ** 2 * mu[j]
+                            for j in range(len(weights_matrix[i]))]) ** 0.5 for i in range(num_options)]
+    return weights_matrix, portfolio_returns, portfolio_risks

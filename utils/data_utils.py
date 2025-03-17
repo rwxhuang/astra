@@ -67,10 +67,7 @@ def encode_locations(dataframe):
         vector = np.zeros(len(location_to_index) - 1, dtype=int)
 
         # if locations is NaN or N/A then don't update vector
-        if not isinstance(locations, str) or locations == 'Not Applicable':
-            pass
-
-        else:
+        if isinstance(locations, str) and locations != 'Not Applicable':
             # get every individual location
             location_list = locations.split('; ')
 

@@ -43,12 +43,13 @@ with body:
                         projects including project dates, costs, locations, technology readiness levels (TRLs),
                         taxonomy levels, etc.
 
-                        Additionally, use pygwalker as an interactive tool to visualize the dataset.
+                        Additionally, use [pygwalker](https://github.com/Kanaries/pygwalker) as an interactive tool to visualize the dataset.
                         """)
             if st.button("Try it out", use_container_width=True):
                 st.switch_page('pages/data.py')
         with img:
-            st.image("images/placeholder.webp")
+            st.image("images/data_viz.png",
+                     use_container_width=True, caption='Data visualization of Techport and SBIR data')
 
     with st.container(border=True):
         st.markdown("""
@@ -57,16 +58,18 @@ with body:
                 #### Automate Portfolio Investment Decisions
                 """, unsafe_allow_html=True)
         st.markdown("""
-                    Discover a carefully crafted methodology to automate the process of determining technology 
-                    project investments through two tools: Markowitz Portfolio Theory (MPT--on left) and 
-                    Deep Reinforcement Learning (DRL--on right).
+                    Explore approaches designed to automate technology project investment decisions using 
+                    two powerful tools: Markowitz Portfolio Theory (MPT) on the left and Deep Reinforcement 
+                    Learning (DRL) on the right. These tools have already proven successful in optimizing 
+                    financial stock portfolios, and we aim to extend them to technology investments, 
+                    enhancing decision-making with a quantitative perspective.
                     """)
         col1, col2 = st.columns(2)
         with col1:
-            st.image("images/placeholder.webp",
+            st.image("images/mpt.png",
                      caption='Markowitz Portfolio Theory', use_container_width=True)
         with col2:
-            st.image("images/placeholder.webp",
+            st.image("images/drl.png",
                      caption='Deep Reinforcement Learning', use_container_width=True)
         if st.button("See investment decisions example based on Techport/SBIR data"):
-            st.switch_page('./pages/mpt.py')
+            st.switch_page('./pages/portfolio.py')
