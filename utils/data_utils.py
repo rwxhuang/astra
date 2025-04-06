@@ -1,6 +1,8 @@
 
 import numpy as np
 import math
+import re
+import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
 
@@ -25,7 +27,8 @@ def extract_tx_level(dataframe):
     dataframe['TX_EXTRACTED'] = dataframe['TX_PART1'] + \
         '.' + dataframe['TX_PART2']
     dataframe['TX_EXTRACTED'] = dataframe['TX_EXTRACTED'].astype(float)
-
+    dataframe['TX_EXTRACTED_INT'] = dataframe['TX_EXTRACTED'].fillna(
+        0).astype(int)
     # removes temp cols
     dataframe = dataframe.drop(columns=['TX_PART1', 'TX_PART2'])
 
@@ -84,34 +87,15 @@ def encode_locations(dataframe):
     return dataframe
 
 
-def encode_status(dataframe):
+def encode_status(df):
     '''
-    dataframe: given a dataframe
+    df: given a dataframe
     return the dataframe with a col for encoding for completed, active, or cancelled
     '''
+    df['STATUS_ENCODED'] = df['STATUS'].map(
+        {'Active': 0, 'Completed': 1, 'Cancelled': 1})
 
-    statuses = ['Active', 'Completed', 'Canceled']
-
-    # mapping from status to index
-    status_to_index = {status: index for index, status in enumerate(statuses)}
-
-    def convert_to_vector_statuses(status):
-        '''
-        given a status, change status into a one-hot encoding
-        '''
-        # initialize empty binary vector
-        vector = np.zeros(len(statuses), dtype=int)
-
-        # change index corresponding to status to a 1
-        vector[status_to_index[status]] = 1
-
-        return vector
-
-    # apply function created to all entries in col
-    dataframe['STATUS_ENCODED'] = dataframe['STATUS'].apply(
-        convert_to_vector_statuses)
-
-    return dataframe
+    return df
 
 
 def normalize_views(dataframe, lower, upper):
@@ -171,7 +155,7 @@ def encode_tx_level(dataframe):
         return vector
 
     # apply function created to all entries in col
-    dataframe['TX_LEVEL_ENCODED'] = dataframe['TX_EXTRACTED'].apply(
+    dataframe['TX_LEVEL_ENCODED_SUBLEVEL'] = dataframe['TX_EXTRACTED'].apply(
         convert_to_vector_levels)
 
     return dataframe
@@ -200,3 +184,45 @@ def create_lambda_function(formula):
         return eval(formula, {}, variables)
 
     return lambda_function
+
+
+def modify_trl(df):
+    # Remove rows where all TRL values are NaN
+    df = df.dropna(subset=['START_TRL', 'CURRENT_TRL', 'END_TRL'], how='all')
+
+    def fill_trl_values(row):
+        # If CURRENT_TRL is NaN and STATUS_ENCODED is 1, use END_TRL or START_TRL if available
+        if pd.isna(row['CURRENT_TRL']) and row['STATUS_ENCODED'] == 1:
+            row['CURRENT_TRL'] = row['END_TRL'] if pd.notna(
+                row['END_TRL']) else row['START_TRL']
+
+        # If CURRENT_TRL is still NaN but both START_TRL and END_TRL exist, take the midpoint
+        if pd.isna(row['CURRENT_TRL']) and pd.notna(row['START_TRL']) and pd.notna(row['END_TRL']):
+            row['CURRENT_TRL'] = (row['START_TRL'] + row['END_TRL']) // 2
+
+        # Assign default ranges for missing START_TRL and END_TRL based on CURRENT_TRL
+        trl_ranges = [(1, 3), (4, 6), (7, 9)]
+        for start, end in trl_ranges:
+            if start <= row['CURRENT_TRL'] <= end:
+                row['START_TRL'] = row['START_TRL'] if pd.notna(
+                    row['START_TRL']) else start
+                row['END_TRL'] = row['END_TRL'] if pd.notna(
+                    row['END_TRL']) else end
+
+        return row
+
+    return df.apply(fill_trl_values, axis=1)
+
+
+def clean_titles_column(df):
+    """
+    Shortens titles in the dataframe and removes phase information.
+    """
+    df['PROJECT_TITLE_CLEANED'] = df['PROJECT_TITLE'].apply(
+        lambda title: re.sub(r'[^a-zA-Z]', '',  # Remove non-alphanumeric characters
+                             # Remove "Phase I, II, etc."
+                             re.sub(r',? Phase [I]+', '',
+                                    str(title), flags=re.IGNORECASE)
+                             ).lower()
+    )
+    return df

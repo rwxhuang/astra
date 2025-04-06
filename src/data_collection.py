@@ -13,7 +13,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from utils.data_utils import extract_tx_level, encode_locations, encode_status, encode_tx_level, normalize_views
+from utils.data_utils import *
 from sklearn.preprocessing import MinMaxScaler
 
 
@@ -51,10 +51,16 @@ class TechportScraper:
             .send_keys(self.search_input)
         self.driver.find_element(
             By.CLASS_NAME, '_searchButton_3htcq_82').click()
+        self._wait_by_class('_button_s5jgh_48')
+        time.sleep(1)
+        view_grid_btn = self.driver.find_element(
+            By.CSS_SELECTOR, "input[value='View as grid']")
+        view_grid_btn.click()
         # Find all the project ids
         project_ids = set()
         while True:
             self._wait_by_class('_pageNumberInput_bcc9b_35')
+            time.sleep(1)
             for proj_desc in self.driver.find_element(By.TAG_NAME, 'tbody').find_elements(By.TAG_NAME, 'tr'):
                 project_id = int(proj_desc.find_element(By.TAG_NAME, 'a').text)
                 project_ids.add(project_id)
@@ -95,7 +101,7 @@ class TechportData(Dataset):
     def __init__(self, conn):
         self.conn = conn
         self.bucket = "astra-data-bucket"
-        self.file_name = "techport_all.csv"
+        self.file_name = "techport_api_all.csv"
 
     def load_data(self):
         '''
@@ -128,14 +134,10 @@ class TechportData(Dataset):
             .pipe(encode_status)
             .pipe(encode_tx_level)
             .pipe(normalize_views, 0, 1)
+            .pipe(modify_trl)
+            .pipe(clean_titles_column)
         )
-
-        # filter out rows with all null trl values
-        df = df[df['START_TRL'].notna() &
-                df['END_TRL'].notna() &
-                df['CURRENT_TRL'].notna()]
         df['LOG_VIEW_COUNT'] = np.log(df['VIEW_COUNT'] + 1)
-
         return df
 
 
@@ -162,19 +164,17 @@ class SBIRData(Dataset):
         # Clean data
         # column names (all uppercase + connect with underscores)
         df.columns = df.columns.str.upper().str.replace(' ', '_')
+        df['PROJECT_TITLE'] = df['AWARD_TITLE']
         # AWARD_AMOUNT column into float values
         df['AWARD_AMOUNT'] = df['AWARD_AMOUNT'].str.replace(
             ',', '').astype(float)
         # Extract start and end year as new columns
         df['START_YEAR'] = pd.to_datetime(df['PROPOSAL_AWARD_DATE']).dt.year
         df['END_YEAR'] = pd.to_datetime(df['CONTRACT_END_DATE']).dt.year
-        # Change column name for merging
-        df = df.rename(columns={'AWARD_TITLE': 'PROJECT_TITLE'})
         return df
 
     def load_processed_data(self):
         df = self.load_data()
-
         # Normalize columns
         normal_columns = ['AWARD_AMOUNT', 'NUMBER_EMPLOYEES']
         scaler = MinMaxScaler()
@@ -186,22 +186,32 @@ class SBIRData(Dataset):
             'SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED', 'WOMEN_OWNED']
         for b in binary_columns:
             df[b] = df[b].apply(lambda x: 1 if x == "Y" else 0)
+        # Get the phase number
+        df = df.pipe(clean_titles_column)
+        df['START_YEAR'] = np.where(
+            df['START_YEAR'].notna(), df['START_YEAR'], df['AWARD_YEAR'])
+        df['END_YEAR'] = np.where(
+            df['END_YEAR'].notna(), df['END_YEAR'], df['AWARD_YEAR'])
         return df
 
 
-@st.cache_data
+@st.cache_data(show_spinner=False)
 def get_astra_data(search_input):
     """
     Returns a pandas DataFrame based on the search_input by web-scraping from Techport.
 
     Returns:
-        pd.DataFrame: 
+        pd.DataFrame:
     """
     # Fetch Techport data from S3
     conn = st.connection('s3', type=FilesConnection)
     # TODO: merge TechportData(conn).load_data() with SBIRData(conn).load_data()
-    techport_and_sbir = pd.merge(TechportData(conn).load_data(), SBIRData(
-        conn).load_data(), on=['PROJECT_TITLE', 'START_YEAR', 'END_YEAR'], how='left')
+    techport_and_sbir = pd.merge(
+        TechportData(conn).load_data(),
+        SBIRData(conn).load_data(),
+        on=['PROJECT_TITLE', 'START_YEAR', 'END_YEAR'],
+        how='left'
+    )
     if not search_input:
         return techport_and_sbir
     # Get Techport project ids
@@ -217,5 +227,7 @@ def get_astra_data(search_input):
                 "The scraper took too long to run and couldn't find any results. Please try again.")
             project_ids = []
     # Filter the data
-    filtered_df = techport_and_sbir.loc[list(project_ids)]
+    filtered_df = techport_and_sbir.loc[
+        techport_and_sbir.index.intersection(project_ids)
+    ]
     return filtered_df

@@ -3,11 +3,10 @@ import pandas as pd
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
+import plotly.colors
 
-from st_files_connection import FilesConnection
-from src.data_collection import TechportData, SBIRData
 from src.mpt_calc import get_mpt_investments
-from utils.mpt_utils import df_columns_mapping, create_lambda_function
+from utils.mpt_utils import *
 
 st.set_page_config(layout="wide",
                    initial_sidebar_state="expanded", page_icon='🛰️')
@@ -18,40 +17,54 @@ st.write(
     The use of Mean-Variance Portfolio Optimization (MVO) in Modern Portfolio Theory (MPT) has been a long-standing method to guide investment decisions for market-traded assets like stocks and bonds. However, MPT lacks the ability to adapt strategies based on evolving market conditions. Experts using MPT do adapt portfolios, but such adaptation is carried out with expert judgement, and various approaches of predictive models and expectations of future returns. The fundamental MPT approach does not inherently include adaptive terms in its formulation. On the other hand, deep reinforcement learning (DRL) offers the following two advantages: capture time-varying market dynamics and accommodate non-linear patterns.
     """
 )
-with st.spinner("Loading modules...", show_time=True):
+with st.spinner("*Loading modules...*", show_time=True):
     with st.sidebar:
-
-        # make connection to s3 bucket
-        conn = st.connection('s3', type=FilesConnection)
-
-        # get processed data to use as dataframe
-        df = pd.merge(TechportData(conn).load_processed_data(),
-                      SBIRData(conn).load_processed_data(),
-                      on=['PROJECT_TITLE', 'START_YEAR', 'END_YEAR'], how='left')
-        ### Dataset Info ###
-        st.header('Dataset Information')
-        if st.button("View Dataset"):
-            st.switch_page('pages/data.py')
-
-        with st.container(border=True):
-            ### numerical variables list ###
-            st.text("Available Numerical Variables")
-
-            # vars list
-            numerical_cols = df.select_dtypes(
-                include=['int64', 'float64']).columns.tolist()
-            numerical_cols = [
-                col for col in numerical_cols if "unnamed" not in col.lower()]
-            st.code("\n".join(numerical_cols))
-
-            ### custom utility function ###
-
-            # ui input section
-            default = "10 ** 5 * (0.4 * (CURRENT_TRL - START_TRL) / (END_TRL - START_TRL) + 0.3 * (CURRENT_TRL - START_TRL) / NUMBER_EMPLOYEES + 0.2 * LOG_VIEW_COUNT)"
-            formula_input = st.text_input(
-                "Custom Formula Using Numerical Variables Above (PERFORMANCE)", value=default)
-            df['PERFORMANCE'] = create_lambda_function(
-                formula_input)(**df_columns_mapping(df))
+        ### STEP 1. Load Data ###
+        st.markdown("**Step 1. Load Technology Projects Data**",
+                    help='Insert Information here')
+        case_study_idx = CASE_STUDIES_IDX[st.selectbox(
+            'Select a case study:', CASE_STUDIES_IDX.keys(), index=0)]
+        with st.spinner(''):
+            df = get_df(case_study_idx)
+        ### STEP 2. K-Means Clustering vs Manual clustering ###
+        st.markdown("**Step 2. Create Clusters**",
+                    help='Insert Information here')
+        _, cluster_col, _, = st.columns(3)
+        use_kmeans = st.toggle(
+            'Automatic', value=CASE_STUDIES_VALUES[case_study_idx])
+        # Display columns selection for clustering
+        if use_kmeans:
+            num_clusters = st.slider(
+                'Number of Clusters', min_value=1, max_value=10, step=1, value=CASE_STUDIES_NUM_CLUSTERS[case_study_idx])
+            cols = st.multiselect(
+                'Columns for clustering',
+                df.columns,
+                default=CASE_STUDIES_CLUSTER_COLS_AUTO[case_study_idx]
+            )
+        else:
+            cols = [
+                st.selectbox(
+                    'Cluster Column',
+                    df.columns,
+                    index=df.columns.get_loc(
+                        CASE_STUDIES_CLUSTER_COLS_MANUAL[case_study_idx][0])
+                )
+            ]
+        ### STEP 3. Set Performance Metric  ###
+        st.markdown("**Step 3. Set Performance Metric**",
+                    help='Insert Information here')
+        st.caption("Available Numerical Variables", unsafe_allow_html=True)
+        numerical_cols = df.select_dtypes(
+            include=['int64', 'float64']).columns.tolist()
+        numerical_cols = [
+            col for col in numerical_cols if "unnamed" not in col.lower()]
+        st.code("\n".join(numerical_cols))
+        formula_input = st.text_input(
+            "Custom Formula Using Numerical Variables Above (PERFORMANCE)",
+            value="10 ** 5 * (0.4 * (CURRENT_TRL - START_TRL) / (END_TRL - START_TRL) + 0.3 * (CURRENT_TRL - START_TRL) / NUMBER_EMPLOYEES + 0.2 * LOG_VIEW_COUNT)"
+        )
+        df['PERFORMANCE'] = create_lambda_function(
+            formula_input)(**df_columns_mapping(df))
 
 #######################################################
     # MPT
@@ -64,8 +77,8 @@ with st.spinner("Loading modules...", show_time=True):
         )
         st.latex(r'''
                 \begin{align*}
-            \text{ maximize   } &\\mu^T w - \lambda w^T \Sigma w \\
-            \text{ subject to   } &w_i \\ge 0 \\
+            \text{ maximize   } &\mu^T w - \lambda w^T \Sigma w \\
+            \text{ subject to   } &w_i \ge 0 \\
             & \sum w_i = 1
         \end{align*}
                 ''')
@@ -75,114 +88,32 @@ with st.spinner("Loading modules...", show_time=True):
             ***
             """
         )
-        mpt_investments, portfolio_returns, portfolio_risks = get_mpt_investments(
-            df)
-
+        # MPT Calculations
+        cluster_names, mpt_investments, portfolio_returns, portfolio_risks = get_mpt_investments(
+            df,
+            use_kmeans,
+            cols,
+            num_clusters if use_kmeans else None
+        )
+        # Color Configurations
+        labels = [
+            f"Cluster #{i}" if use_kmeans else f"{cols[0]} {cluster_names[i - 1]}"
+            for i in range(1, mpt_investments.shape[1] + 1)
+        ]
+        color_palette = plotly.colors.qualitative.Plotly
+        unique_labels = labels
+        color_map = {label: color_palette[i % len(
+            color_palette)] for i, label in enumerate(unique_labels)}
         # Scatter Plot
-        scatter_pl_data = {
-            "Portfolio": [i for i in range(1, 11)],
-            "Portfolio Risk": [round(risk, 2) for risk in portfolio_risks],
-            "Portfolio Mean Return": [round(ret, 2) for ret in portfolio_returns]
-        }
-
-        df_scatter = pd.DataFrame(scatter_pl_data)
-        df_scatter["Custom Label"] = [
-            f"Portfolio #{i}" for i in range(1, len(df_scatter) + 1)]
-
-        # Create the scatter plot
-        fig_scatter = px.line(
-            df_scatter,
-            markers=True,
-            x="Portfolio Risk",
-            y="Portfolio Mean Return",
-            text="Custom Label",
-            labels={"Portfolio Risk": "Risk of Portfolio (std dev.)",
-                    "Portfolio Mean Return": "Mean Return of Portfolios"},
-            template="plotly_dark"
+        fig_scatter = get_scatter_plot(
+            mpt_investments,
+            portfolio_returns,
+            portfolio_risks
         )
-        fig_scatter.update_traces(
-            marker=dict(size=9),
-            hovertemplate="<b>%{text}</b><br>Risk: %{x:.2f}<br>Return: %{y:.2f}"
-        )
-        fig_scatter.update_layout(
-            xaxis=dict(showgrid=True),  # Show grid on x-axis
-            yaxis=dict(showgrid=True)   # Show grid on y-axis
-        )
-
         # Pie Charts
-        df_pie = pd.DataFrame({
-            "Cluster": [f"Cluster #{i}" for i in range(1, 8)],
-            **{f"Portfolio #{i+1}": values for i, values in enumerate(mpt_investments)}
-        })
-
-        # Define subplot layout
-        fig_pie = make_subplots(
-            rows=5, cols=2,
-            specs=[[{'type': 'domain'}] * 2] * 5,
-            subplot_titles=[f"Portfolio #{i+1}" for i in range(10)]
-        )
-
-        # Add pie charts to subplots
-        for i, (row, col) in enumerate([(r, c) for r in range(1, 6) for c in range(1, 3)]):
-            fig_pie.add_trace(
-                go.Pie(
-                    values=df_pie[f"Portfolio #{i+1}"],
-                    labels=df_pie["Cluster"],
-                    hovertemplate="<b>%{label}</b><br>Percentage: %{percent:.2f}",
-                    # Show legend only for the first pie chart
-                    showlegend=(i == 0)
-                ),
-                row=row, col=col
-            )
-
-        # Configure layout
-        fig_pie.update_layout(
-            height=1000,
-            width=800,
-            font_size=12,
-            legend=dict(
-                orientation="h",
-                y=1.17,
-                x=0.25,
-                xanchor="center",
-                traceorder="normal"
-            )
-        )
-
+        fig_pie = get_pie_charts(mpt_investments, labels, color_map)
         # Proportional Stacked Bar Chart
-        stack_bar_ch_data = {
-            "Portfolio": [f"Portfolio #{i}" for i in range(1, 11)],
-            **{f"Cluster #{i + 1}": values for i, values in enumerate(mpt_investments.T)}
-        }
-
-        df_stack_bar = pd.DataFrame(stack_bar_ch_data)
-
-        # Normalize values to percentages
-        df_bar_normalized = df_stack_bar.set_index("Portfolio")
-        df_bar_normalized = df_bar_normalized.div(
-            df_bar_normalized.sum(axis=1), axis=0) * 100
-        df_bar_normalized.reset_index(inplace=True)
-
-        # Melt data for Plotly
-        df_bar_melted = df_bar_normalized.melt(
-            id_vars="Portfolio", var_name="Clusters", value_name="Percentage"
-        )
-
-        # Create stacked bar chart with formatted percentages
-        fig_bar = px.bar(
-            df_bar_melted,
-            x="Portfolio",
-            y="Percentage",
-            color="Clusters",
-            barmode="stack",
-            text=df_bar_melted["Percentage"].apply(lambda x: f"{x:.1f}%")
-        )
-
-        fig_bar.update_traces(
-            textposition="inside",
-            hovertemplate="<b>%{x}</b><br>Percentage: %{y:.1f}%"
-        )
-
+        fig_bar = get_bar_chart(mpt_investments, labels, color_map)
         # Create two main columns
         col1, col2 = st.columns([3, 2])
 
