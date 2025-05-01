@@ -10,16 +10,10 @@ icon = "📊"
 url_path = "data"
 
 [[pages]]
-path = "pages/mpt.py"
-name = "Markowitz Portfolio Theory"
+path = "pages/portfolio.py"
+name = "Portfolio Theory"
 icon = "📈"
-url_path = "mpt"
-
-[[pages]]
-path = "pages/drl.py"
-name = "Deep Reinforcement Learning"
-icon = "🤖"
-url_path = "drl"
+url_path = "portfolios"
 
 [[pages]]
 path = "pages/about.py"

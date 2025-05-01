@@ -2,3 +2,7 @@ data/output/
 .venv
 .DS_Store
 .streamlit/secrets.toml
+
+src/__pycache__
+utils/__pycache__
+tests/__pycache__
