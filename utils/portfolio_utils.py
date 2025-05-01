@@ -87,7 +87,7 @@ def create_lambda_function(formula):
 
 
 def get_df(id):
-    @st.cache_data(show_spinner=False)
+    # @st.cache_data(show_spinner=False)
     def fetch_df_from_s3():
         conn = st.connection('s3', type=FilesConnection)
         return merge_dfs(
@@ -218,3 +218,28 @@ def get_bar_chart(investments, labels, color_map):
         hovertemplate="<b>%{x}</b><br>Percentage: %{y:.1f}%"
     )
     return fig_bar
+
+
+def get_drl_pie(investments, labels):
+    # Create a DataFrame for the pie chart
+    df_pie = pd.DataFrame({
+        'LABEL': labels,
+        **{f"Portfolio #{i+1}": values for i, values in enumerate(investments)}
+    })
+
+    # Create the pie chart
+    fig_pie = px.pie(
+        df_pie,
+        values=df_pie.iloc[:, 1:].sum(axis=1),
+        names=df_pie['LABEL'],
+        color_discrete_sequence=px.colors.qualitative.Plotly,
+        template="plotly_dark"
+    )
+
+    fig_pie.update_layout(
+        title="DRL Investment Decision",
+        title_font_size=24,
+        font=dict(size=14)  # Applies to legend, labels, etc.
+    )
+
+    return fig_pie

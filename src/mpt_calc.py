@@ -75,11 +75,11 @@ def get_mu_cov_of_clusters(df, use_kmeans, cols, num_clusters):
 
     # replace the missing award amounts with the mean of each cluster
     # get the average award amounts of each cluster
-    average_cluster_value = df.groupby(
+    average_cluster_award = df.groupby(
         'CLUSTER')['AWARD_AMOUNT'].mean().to_dict()
 
     # replace nan's in award amount
-    df['AWARD_AMOUNT'] = df.apply(lambda row: average_cluster_value[row['CLUSTER']] if pd.isna(
+    df['AWARD_AMOUNT'] = df.apply(lambda row: average_cluster_award[row['CLUSTER']] if pd.isna(
         row['AWARD_AMOUNT']) else row['AWARD_AMOUNT'], axis=1)
 
     # df['PERFORMANCE'] = df.apply(calculate_performance, axis=1)
@@ -101,12 +101,12 @@ def get_mu_cov_of_clusters(df, use_kmeans, cols, num_clusters):
     mu = np.array(cluster_utilities.mean())
     cov = np.matrix(cluster_utilities.cov())
 
-    return cluster_names, mu, cov
+    return df, cluster_names, mu, cov
 
 
 def get_mpt_investments(df, use_kmeans, cols, num_clusters):
 
-    cluster_names, mu, cov = get_mu_cov_of_clusters(
+    df, cluster_names, mu, cov = get_mu_cov_of_clusters(
         df, use_kmeans, cols, num_clusters)
 
     # calculate min return
@@ -133,7 +133,7 @@ def get_mpt_investments(df, use_kmeans, cols, num_clusters):
     portfolio_risks = [sum([weights_matrix[i][j] ** 2 * mu[j]
                             for j in range(len(weights_matrix[i]))]) ** 0.5 for i in range(num_options)]
 
-    return cluster_names, weights_matrix, portfolio_returns, portfolio_risks
+    return df, cluster_names, weights_matrix, portfolio_returns, portfolio_risks
 
 
 def merge_dfs(techport_df, sbir_df):

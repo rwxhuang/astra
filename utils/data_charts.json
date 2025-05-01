@@ -220,7 +220,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "START_YEAR",
-          "dragId": "GW_q7RgCrFJ"
+          "dragId": "GW_q7RgCrFJ",
+          "offset": 0
         },
         {
           "fid": "END_YEAR",
@@ -228,7 +229,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "END_YEAR",
-          "dragId": "GW_4fQwnLRC"
+          "dragId": "GW_4fQwnLRC",
+          "offset": 0
         },
         {
           "fid": "AGENCY_TRACKING_NUMBER",
@@ -236,7 +238,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "AGENCY_TRACKING_NUMBER",
-          "dragId": "GW_irGFjtEn"
+          "dragId": "GW_irGFjtEn",
+          "offset": 0
         },
         {
           "fid": "CONTRACT",
@@ -244,7 +247,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT",
-          "dragId": "GW_kEbSgFme"
+          "dragId": "GW_kEbSgFme",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER",
@@ -252,7 +256,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER",
-          "dragId": "GW_QStl3u8G"
+          "dragId": "GW_QStl3u8G",
+          "offset": 0
         },
         {
           "fid": "PHASE",
@@ -260,7 +265,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PHASE",
-          "dragId": "GW_F5NiAx8C"
+          "dragId": "GW_F5NiAx8C",
+          "offset": 0
         },
         {
           "fid": "TOPIC_CODE",
@@ -268,7 +274,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "TOPIC_CODE",
-          "dragId": "GW_cW7DsrUL"
+          "dragId": "GW_cW7DsrUL",
+          "offset": 0
         },
         {
           "fid": "PROPOSAL_AWARD_DATE",
@@ -276,7 +283,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PROPOSAL_AWARD_DATE",
-          "dragId": "GW_D7VilWNQ"
+          "dragId": "GW_D7VilWNQ",
+          "offset": 0
         },
         {
           "fid": "CONTRACT_END_DATE",
@@ -284,7 +292,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT_END_DATE",
-          "dragId": "GW_WMJHdYhS"
+          "dragId": "GW_WMJHdYhS",
+          "offset": 0
         },
         {
           "fid": "DUNS",
@@ -292,7 +301,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "DUNS",
-          "dragId": "GW_2z76AxiV"
+          "dragId": "GW_2z76AxiV",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER.1",
@@ -300,7 +310,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER.1",
-          "dragId": "GW_6TkgAtQO"
+          "dragId": "GW_6TkgAtQO",
+          "offset": 0
         },
         {
           "fid": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
@@ -308,7 +319,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
-          "dragId": "GW_lc2ED3bh"
+          "dragId": "GW_lc2ED3bh",
+          "offset": 0
         },
         {
           "fid": "WOMEN_OWNED",
@@ -316,7 +328,16 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "WOMEN_OWNED",
-          "dragId": "GW_59w6EYiQ"
+          "dragId": "GW_59w6EYiQ",
+          "offset": 0
+        },
+        {
+          "fid": "AWARD_TITLE",
+          "name": "AWARD_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "basename": "AWARD_TITLE",
+          "dragId": "GW_QKGkIzT4"
         }
       ],
       "measures": [
@@ -411,7 +432,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "UNNAMED:_0",
-          "dragId": "GW_wxHgyBKO"
+          "dragId": "GW_wxHgyBKO",
+          "offset": 0
         },
         {
           "fid": "AWARD_AMOUNT",
@@ -419,7 +441,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "AWARD_AMOUNT",
-          "dragId": "GW_7OQSK2qr"
+          "dragId": "GW_7OQSK2qr",
+          "offset": 0
         },
         {
           "fid": "NUMBER_EMPLOYEES",
@@ -427,7 +450,24 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "NUMBER_EMPLOYEES",
-          "dragId": "GW_pqPlRSZX"
+          "dragId": "GW_pqPlRSZX",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED_INT",
+          "name": "TX_EXTRACTED_INT",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "TX_EXTRACTED_INT",
+          "dragId": "GW_x6RuKvzg"
+        },
+        {
+          "fid": "AWARD_YEAR",
+          "name": "AWARD_YEAR",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "AWARD_YEAR",
+          "dragId": "GW_noGz1D2b"
         }
       ],
       "rows": [
@@ -513,9 +553,25 @@
             ]
           },
           "rule": {
-            "type": "not in",
+            "type": "one of",
             "value": [
-              null
+              16,
+              17,
+              13,
+              10,
+              2,
+              9,
+              4,
+              15,
+              5,
+              11,
+              7,
+              14,
+              3,
+              1,
+              12,
+              6,
+              8
             ]
           },
           "offset": 0
@@ -778,7 +834,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "START_YEAR",
-          "dragId": "GW_HUsMOtyk"
+          "dragId": "GW_HUsMOtyk",
+          "offset": 0
         },
         {
           "fid": "END_YEAR",
@@ -786,7 +843,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "END_YEAR",
-          "dragId": "GW_9GKLVz5j"
+          "dragId": "GW_9GKLVz5j",
+          "offset": 0
         },
         {
           "fid": "AGENCY_TRACKING_NUMBER",
@@ -794,7 +852,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "AGENCY_TRACKING_NUMBER",
-          "dragId": "GW_MXGyg3c1"
+          "dragId": "GW_MXGyg3c1",
+          "offset": 0
         },
         {
           "fid": "CONTRACT",
@@ -802,7 +861,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT",
-          "dragId": "GW_ubBd06jn"
+          "dragId": "GW_ubBd06jn",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER",
@@ -810,7 +870,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER",
-          "dragId": "GW_yxt8ZIQn"
+          "dragId": "GW_yxt8ZIQn",
+          "offset": 0
         },
         {
           "fid": "PHASE",
@@ -818,7 +879,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PHASE",
-          "dragId": "GW_oDQNWM0y"
+          "dragId": "GW_oDQNWM0y",
+          "offset": 0
         },
         {
           "fid": "TOPIC_CODE",
@@ -826,7 +888,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "TOPIC_CODE",
-          "dragId": "GW_srwPAKm7"
+          "dragId": "GW_srwPAKm7",
+          "offset": 0
         },
         {
           "fid": "PROPOSAL_AWARD_DATE",
@@ -834,7 +897,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PROPOSAL_AWARD_DATE",
-          "dragId": "GW_xUg8oe3K"
+          "dragId": "GW_xUg8oe3K",
+          "offset": 0
         },
         {
           "fid": "CONTRACT_END_DATE",
@@ -842,7 +906,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT_END_DATE",
-          "dragId": "GW_WVFPlhH1"
+          "dragId": "GW_WVFPlhH1",
+          "offset": 0
         },
         {
           "fid": "DUNS",
@@ -850,7 +915,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "DUNS",
-          "dragId": "GW_CbEYAJ1i"
+          "dragId": "GW_CbEYAJ1i",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER.1",
@@ -858,7 +924,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER.1",
-          "dragId": "GW_6BT9rMSf"
+          "dragId": "GW_6BT9rMSf",
+          "offset": 0
         },
         {
           "fid": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
@@ -866,7 +933,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
-          "dragId": "GW_wciY2uy3"
+          "dragId": "GW_wciY2uy3",
+          "offset": 0
         },
         {
           "fid": "WOMEN_OWNED",
@@ -874,7 +942,16 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "WOMEN_OWNED",
-          "dragId": "GW_CmOtUJNg"
+          "dragId": "GW_CmOtUJNg",
+          "offset": 0
+        },
+        {
+          "fid": "AWARD_TITLE",
+          "name": "AWARD_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "basename": "AWARD_TITLE",
+          "dragId": "GW_xHtVqezv"
         }
       ],
       "measures": [
@@ -960,7 +1037,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "UNNAMED:_0",
-          "dragId": "GW_8K1axQIS"
+          "dragId": "GW_8K1axQIS",
+          "offset": 0
         },
         {
           "fid": "AWARD_AMOUNT",
@@ -968,7 +1046,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "AWARD_AMOUNT",
-          "dragId": "GW_7BsZrkvj"
+          "dragId": "GW_7BsZrkvj",
+          "offset": 0
         },
         {
           "fid": "NUMBER_EMPLOYEES",
@@ -976,7 +1055,24 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "NUMBER_EMPLOYEES",
-          "dragId": "GW_LSW87yG2"
+          "dragId": "GW_LSW87yG2",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED_INT",
+          "name": "TX_EXTRACTED_INT",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "TX_EXTRACTED_INT",
+          "dragId": "GW_IndXWrvS"
+        },
+        {
+          "fid": "AWARD_YEAR",
+          "name": "AWARD_YEAR",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "AWARD_YEAR",
+          "dragId": "GW_hdDCIVFL"
         }
       ],
       "rows": [
@@ -1333,7 +1429,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "START_YEAR",
-          "dragId": "GW_43UCzkRE"
+          "dragId": "GW_43UCzkRE",
+          "offset": 0
         },
         {
           "fid": "END_YEAR",
@@ -1341,7 +1438,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "END_YEAR",
-          "dragId": "GW_vnBsagqc"
+          "dragId": "GW_vnBsagqc",
+          "offset": 0
         },
         {
           "fid": "AGENCY_TRACKING_NUMBER",
@@ -1349,7 +1447,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "AGENCY_TRACKING_NUMBER",
-          "dragId": "GW_Dmldp5t3"
+          "dragId": "GW_Dmldp5t3",
+          "offset": 0
         },
         {
           "fid": "CONTRACT",
@@ -1357,7 +1456,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT",
-          "dragId": "GW_QbruvfZ0"
+          "dragId": "GW_QbruvfZ0",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER",
@@ -1365,7 +1465,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER",
-          "dragId": "GW_hSs0Rlpc"
+          "dragId": "GW_hSs0Rlpc",
+          "offset": 0
         },
         {
           "fid": "PHASE",
@@ -1373,7 +1474,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PHASE",
-          "dragId": "GW_4zTf9ODX"
+          "dragId": "GW_4zTf9ODX",
+          "offset": 0
         },
         {
           "fid": "TOPIC_CODE",
@@ -1381,7 +1483,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "TOPIC_CODE",
-          "dragId": "GW_ZNkSWzJ0"
+          "dragId": "GW_ZNkSWzJ0",
+          "offset": 0
         },
         {
           "fid": "PROPOSAL_AWARD_DATE",
@@ -1389,7 +1492,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PROPOSAL_AWARD_DATE",
-          "dragId": "GW_bSJBqMTy"
+          "dragId": "GW_bSJBqMTy",
+          "offset": 0
         },
         {
           "fid": "CONTRACT_END_DATE",
@@ -1397,7 +1501,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT_END_DATE",
-          "dragId": "GW_gsdaP4BT"
+          "dragId": "GW_gsdaP4BT",
+          "offset": 0
         },
         {
           "fid": "DUNS",
@@ -1405,7 +1510,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "DUNS",
-          "dragId": "GW_In92hf0L"
+          "dragId": "GW_In92hf0L",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER.1",
@@ -1413,7 +1519,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER.1",
-          "dragId": "GW_ku5Tj1by"
+          "dragId": "GW_ku5Tj1by",
+          "offset": 0
         },
         {
           "fid": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
@@ -1421,7 +1528,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
-          "dragId": "GW_0iCGFwbr"
+          "dragId": "GW_0iCGFwbr",
+          "offset": 0
         },
         {
           "fid": "WOMEN_OWNED",
@@ -1429,7 +1537,16 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "WOMEN_OWNED",
-          "dragId": "GW_JuY7NiIg"
+          "dragId": "GW_JuY7NiIg",
+          "offset": 0
+        },
+        {
+          "fid": "AWARD_TITLE",
+          "name": "AWARD_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "basename": "AWARD_TITLE",
+          "dragId": "GW_v9GAnliw"
         }
       ],
       "measures": [
@@ -1524,7 +1641,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "UNNAMED:_0",
-          "dragId": "GW_LTAYQXCm"
+          "dragId": "GW_LTAYQXCm",
+          "offset": 0
         },
         {
           "fid": "AWARD_AMOUNT",
@@ -1532,7 +1650,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "AWARD_AMOUNT",
-          "dragId": "GW_53MkJiqE"
+          "dragId": "GW_53MkJiqE",
+          "offset": 0
         },
         {
           "fid": "NUMBER_EMPLOYEES",
@@ -1540,7 +1659,24 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "NUMBER_EMPLOYEES",
-          "dragId": "GW_hXDuFYMm"
+          "dragId": "GW_hXDuFYMm",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED_INT",
+          "name": "TX_EXTRACTED_INT",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "TX_EXTRACTED_INT",
+          "dragId": "GW_6Gi1M0zl"
+        },
+        {
+          "fid": "AWARD_YEAR",
+          "name": "AWARD_YEAR",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "AWARD_YEAR",
+          "dragId": "GW_FDmVAP9w"
         }
       ],
       "rows": [
@@ -1868,7 +2004,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "START_YEAR",
-          "dragId": "GW_YZ8zwrAV"
+          "dragId": "GW_YZ8zwrAV",
+          "offset": 0
         },
         {
           "fid": "END_YEAR",
@@ -1876,7 +2013,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "END_YEAR",
-          "dragId": "GW_MtweJbW7"
+          "dragId": "GW_MtweJbW7",
+          "offset": 0
         },
         {
           "fid": "AGENCY_TRACKING_NUMBER",
@@ -1884,7 +2022,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "AGENCY_TRACKING_NUMBER",
-          "dragId": "GW_MHIr16AS"
+          "dragId": "GW_MHIr16AS",
+          "offset": 0
         },
         {
           "fid": "CONTRACT",
@@ -1892,7 +2031,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT",
-          "dragId": "GW_Sfria3WG"
+          "dragId": "GW_Sfria3WG",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER",
@@ -1900,7 +2040,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER",
-          "dragId": "GW_cCVQ73xE"
+          "dragId": "GW_cCVQ73xE",
+          "offset": 0
         },
         {
           "fid": "PHASE",
@@ -1908,7 +2049,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PHASE",
-          "dragId": "GW_wJHTr0oF"
+          "dragId": "GW_wJHTr0oF",
+          "offset": 0
         },
         {
           "fid": "TOPIC_CODE",
@@ -1916,7 +2058,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "TOPIC_CODE",
-          "dragId": "GW_q0BMT5LA"
+          "dragId": "GW_q0BMT5LA",
+          "offset": 0
         },
         {
           "fid": "PROPOSAL_AWARD_DATE",
@@ -1924,7 +2067,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PROPOSAL_AWARD_DATE",
-          "dragId": "GW_67LmhpjN"
+          "dragId": "GW_67LmhpjN",
+          "offset": 0
         },
         {
           "fid": "CONTRACT_END_DATE",
@@ -1932,7 +2076,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT_END_DATE",
-          "dragId": "GW_fzap3dch"
+          "dragId": "GW_fzap3dch",
+          "offset": 0
         },
         {
           "fid": "DUNS",
@@ -1940,7 +2085,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "DUNS",
-          "dragId": "GW_cEzNj9yf"
+          "dragId": "GW_cEzNj9yf",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER.1",
@@ -1948,7 +2094,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER.1",
-          "dragId": "GW_TwQH9VFG"
+          "dragId": "GW_TwQH9VFG",
+          "offset": 0
         },
         {
           "fid": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
@@ -1956,7 +2103,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
-          "dragId": "GW_r6tUjqAa"
+          "dragId": "GW_r6tUjqAa",
+          "offset": 0
         },
         {
           "fid": "WOMEN_OWNED",
@@ -1964,7 +2112,16 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "WOMEN_OWNED",
-          "dragId": "GW_4l6UWd2h"
+          "dragId": "GW_4l6UWd2h",
+          "offset": 0
+        },
+        {
+          "fid": "AWARD_TITLE",
+          "name": "AWARD_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "basename": "AWARD_TITLE",
+          "dragId": "GW_JQDsWpnP"
         }
       ],
       "measures": [
@@ -2059,7 +2216,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "UNNAMED:_0",
-          "dragId": "GW_wx7h3v5T"
+          "dragId": "GW_wx7h3v5T",
+          "offset": 0
         },
         {
           "fid": "AWARD_AMOUNT",
@@ -2067,7 +2225,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "AWARD_AMOUNT",
-          "dragId": "GW_8udL2YGg"
+          "dragId": "GW_8udL2YGg",
+          "offset": 0
         },
         {
           "fid": "NUMBER_EMPLOYEES",
@@ -2075,7 +2234,24 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "NUMBER_EMPLOYEES",
-          "dragId": "GW_q0eFLc5B"
+          "dragId": "GW_q0eFLc5B",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED_INT",
+          "name": "TX_EXTRACTED_INT",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "TX_EXTRACTED_INT",
+          "dragId": "GW_eMcaZsQv"
+        },
+        {
+          "fid": "AWARD_YEAR",
+          "name": "AWARD_YEAR",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "AWARD_YEAR",
+          "dragId": "GW_4fuz58HA"
         }
       ],
       "rows": [
@@ -2399,7 +2575,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "START_YEAR",
-          "dragId": "GW_2kEj50bW"
+          "dragId": "GW_2kEj50bW",
+          "offset": 0
         },
         {
           "fid": "END_YEAR",
@@ -2407,7 +2584,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "END_YEAR",
-          "dragId": "GW_zo1mI3d4"
+          "dragId": "GW_zo1mI3d4",
+          "offset": 0
         },
         {
           "fid": "AGENCY_TRACKING_NUMBER",
@@ -2415,7 +2593,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "AGENCY_TRACKING_NUMBER",
-          "dragId": "GW_4tpoiOlI"
+          "dragId": "GW_4tpoiOlI",
+          "offset": 0
         },
         {
           "fid": "CONTRACT",
@@ -2423,7 +2602,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT",
-          "dragId": "GW_6gfyDRdZ"
+          "dragId": "GW_6gfyDRdZ",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER",
@@ -2431,7 +2611,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER",
-          "dragId": "GW_PLvXHiGu"
+          "dragId": "GW_PLvXHiGu",
+          "offset": 0
         },
         {
           "fid": "PHASE",
@@ -2439,7 +2620,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PHASE",
-          "dragId": "GW_wtqVn13g"
+          "dragId": "GW_wtqVn13g",
+          "offset": 0
         },
         {
           "fid": "TOPIC_CODE",
@@ -2447,7 +2629,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "TOPIC_CODE",
-          "dragId": "GW_EAz8lhLT"
+          "dragId": "GW_EAz8lhLT",
+          "offset": 0
         },
         {
           "fid": "PROPOSAL_AWARD_DATE",
@@ -2455,7 +2638,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PROPOSAL_AWARD_DATE",
-          "dragId": "GW_Deh4LWK9"
+          "dragId": "GW_Deh4LWK9",
+          "offset": 0
         },
         {
           "fid": "CONTRACT_END_DATE",
@@ -2463,7 +2647,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT_END_DATE",
-          "dragId": "GW_TxoduDq3"
+          "dragId": "GW_TxoduDq3",
+          "offset": 0
         },
         {
           "fid": "DUNS",
@@ -2471,7 +2656,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "DUNS",
-          "dragId": "GW_VlsMqaZy"
+          "dragId": "GW_VlsMqaZy",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER.1",
@@ -2479,7 +2665,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER.1",
-          "dragId": "GW_cBdreIOE"
+          "dragId": "GW_cBdreIOE",
+          "offset": 0
         },
         {
           "fid": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
@@ -2487,7 +2674,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
-          "dragId": "GW_qAnNMH7S"
+          "dragId": "GW_qAnNMH7S",
+          "offset": 0
         },
         {
           "fid": "WOMEN_OWNED",
@@ -2495,7 +2683,16 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "WOMEN_OWNED",
-          "dragId": "GW_WE7x1TQL"
+          "dragId": "GW_WE7x1TQL",
+          "offset": 0
+        },
+        {
+          "fid": "AWARD_TITLE",
+          "name": "AWARD_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "basename": "AWARD_TITLE",
+          "dragId": "GW_FJbC29zg"
         }
       ],
       "measures": [
@@ -2563,7 +2760,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "UNNAMED:_0",
-          "dragId": "GW_5w4GcnzB"
+          "dragId": "GW_5w4GcnzB",
+          "offset": 0
         },
         {
           "fid": "AWARD_AMOUNT",
@@ -2571,7 +2769,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "AWARD_AMOUNT",
-          "dragId": "GW_h4F96Z8X"
+          "dragId": "GW_h4F96Z8X",
+          "offset": 0
         },
         {
           "fid": "NUMBER_EMPLOYEES",
@@ -2579,7 +2778,24 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "NUMBER_EMPLOYEES",
-          "dragId": "GW_welnNCar"
+          "dragId": "GW_welnNCar",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED_INT",
+          "name": "TX_EXTRACTED_INT",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "TX_EXTRACTED_INT",
+          "dragId": "GW_5CxkKZLF"
+        },
+        {
+          "fid": "AWARD_YEAR",
+          "name": "AWARD_YEAR",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "AWARD_YEAR",
+          "dragId": "GW_0pcy4xe9"
         }
       ],
       "rows": [
@@ -2903,7 +3119,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "START_YEAR",
-          "dragId": "GW_GniMbgBV"
+          "dragId": "GW_GniMbgBV",
+          "offset": 0
         },
         {
           "fid": "END_YEAR",
@@ -2911,7 +3128,8 @@
           "semanticType": "quantitative",
           "analyticType": "dimension",
           "basename": "END_YEAR",
-          "dragId": "GW_dEbr9ZuS"
+          "dragId": "GW_dEbr9ZuS",
+          "offset": 0
         },
         {
           "fid": "AGENCY_TRACKING_NUMBER",
@@ -2919,7 +3137,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "AGENCY_TRACKING_NUMBER",
-          "dragId": "GW_8940n2Qu"
+          "dragId": "GW_8940n2Qu",
+          "offset": 0
         },
         {
           "fid": "CONTRACT",
@@ -2927,7 +3146,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT",
-          "dragId": "GW_EWxI6N2k"
+          "dragId": "GW_EWxI6N2k",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER",
@@ -2935,7 +3155,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER",
-          "dragId": "GW_CMt1xhGY"
+          "dragId": "GW_CMt1xhGY",
+          "offset": 0
         },
         {
           "fid": "PHASE",
@@ -2943,7 +3164,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PHASE",
-          "dragId": "GW_LQhPa5Nn"
+          "dragId": "GW_LQhPa5Nn",
+          "offset": 0
         },
         {
           "fid": "TOPIC_CODE",
@@ -2951,7 +3173,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "TOPIC_CODE",
-          "dragId": "GW_1FBD3woz"
+          "dragId": "GW_1FBD3woz",
+          "offset": 0
         },
         {
           "fid": "PROPOSAL_AWARD_DATE",
@@ -2959,7 +3182,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "PROPOSAL_AWARD_DATE",
-          "dragId": "GW_TPwBh3mx"
+          "dragId": "GW_TPwBh3mx",
+          "offset": 0
         },
         {
           "fid": "CONTRACT_END_DATE",
@@ -2967,7 +3191,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "CONTRACT_END_DATE",
-          "dragId": "GW_LKr0QNCa"
+          "dragId": "GW_LKr0QNCa",
+          "offset": 0
         },
         {
           "fid": "DUNS",
@@ -2975,7 +3200,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "DUNS",
-          "dragId": "GW_utGJvksX"
+          "dragId": "GW_utGJvksX",
+          "offset": 0
         },
         {
           "fid": "SOLICITATION_NUMBER.1",
@@ -2983,7 +3209,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOLICITATION_NUMBER.1",
-          "dragId": "GW_tQGlNK7V"
+          "dragId": "GW_tQGlNK7V",
+          "offset": 0
         },
         {
           "fid": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
@@ -2991,7 +3218,8 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "SOCIALLY_AND_ECONOMICALLY_DISADVANTAGED",
-          "dragId": "GW_OnYvH1Cu"
+          "dragId": "GW_OnYvH1Cu",
+          "offset": 0
         },
         {
           "fid": "WOMEN_OWNED",
@@ -2999,7 +3227,16 @@
           "semanticType": "nominal",
           "analyticType": "dimension",
           "basename": "WOMEN_OWNED",
-          "dragId": "GW_SpCWQguJ"
+          "dragId": "GW_SpCWQguJ",
+          "offset": 0
+        },
+        {
+          "fid": "AWARD_TITLE",
+          "name": "AWARD_TITLE",
+          "semanticType": "nominal",
+          "analyticType": "dimension",
+          "basename": "AWARD_TITLE",
+          "dragId": "GW_s7xy2AaE"
         }
       ],
       "measures": [
@@ -3058,7 +3295,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "UNNAMED:_0",
-          "dragId": "GW_gGTNlvxu"
+          "dragId": "GW_gGTNlvxu",
+          "offset": 0
         },
         {
           "fid": "AWARD_AMOUNT",
@@ -3066,7 +3304,8 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "AWARD_AMOUNT",
-          "dragId": "GW_aKR5J7xT"
+          "dragId": "GW_aKR5J7xT",
+          "offset": 0
         },
         {
           "fid": "NUMBER_EMPLOYEES",
@@ -3074,7 +3313,24 @@
           "semanticType": "quantitative",
           "analyticType": "measure",
           "basename": "NUMBER_EMPLOYEES",
-          "dragId": "GW_x81wLrdT"
+          "dragId": "GW_x81wLrdT",
+          "offset": 0
+        },
+        {
+          "fid": "TX_EXTRACTED_INT",
+          "name": "TX_EXTRACTED_INT",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "TX_EXTRACTED_INT",
+          "dragId": "GW_xhg0uDU8"
+        },
+        {
+          "fid": "AWARD_YEAR",
+          "name": "AWARD_YEAR",
+          "semanticType": "quantitative",
+          "analyticType": "measure",
+          "basename": "AWARD_YEAR",
+          "dragId": "GW_dTg5ahAP"
         }
       ],
       "rows": [

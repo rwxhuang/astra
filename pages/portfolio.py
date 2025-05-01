@@ -6,7 +6,8 @@ import plotly.graph_objects as go
 import plotly.colors
 
 from src.mpt_calc import get_mpt_investments
-from utils.mpt_utils import *
+from src.drl_calc import get_drl_investments
+from utils.portfolio_utils import *
 
 st.set_page_config(layout="wide",
                    initial_sidebar_state="expanded", page_icon='🛰️')
@@ -61,8 +62,10 @@ with st.spinner("*Loading modules...*", show_time=True):
         st.code("\n".join(numerical_cols))
         formula_input = st.text_input(
             "Custom Formula Using Numerical Variables Above (PERFORMANCE)",
-            value="10 ** 5 * (0.4 * (CURRENT_TRL - START_TRL) / (END_TRL - START_TRL) + 0.3 * (CURRENT_TRL - START_TRL) / NUMBER_EMPLOYEES + 0.2 * LOG_VIEW_COUNT)"
+            value="10 ** 5 * (4/9 * (CURRENT_TRL - START_TRL + 0.5) / (END_TRL - START_TRL + 0.5) + 3/9 * (CURRENT_TRL - START_TRL + 0.5) / (END_YEAR - START_YEAR + 0.5) + 2/9 * (CURRENT_TRL - START_TRL + 0.5) / (NUMBER_EMPLOYEES+0.5) + 0 * LOG_VIEW_COUNT)"
         )
+        df['NUMBER_EMPLOYEES'] = df['NUMBER_EMPLOYEES'].fillna(
+            df['NUMBER_EMPLOYEES'].mean())
         df['PERFORMANCE'] = create_lambda_function(
             formula_input)(**df_columns_mapping(df))
 
@@ -89,7 +92,7 @@ with st.spinner("*Loading modules...*", show_time=True):
             """
         )
         # MPT Calculations
-        cluster_names, mpt_investments, portfolio_returns, portfolio_risks = get_mpt_investments(
+        df, cluster_names, mpt_investments, portfolio_returns, portfolio_risks = get_mpt_investments(
             df,
             use_kmeans,
             cols,
@@ -148,3 +151,7 @@ with st.spinner("*Loading modules...*", show_time=True):
             ***
             """
         )
+        drl_investments = get_drl_investments(df)
+        fig_drl_pie = get_drl_pie(drl_investments, labels)
+
+        st.plotly_chart(fig_drl_pie, use_container_width=True)

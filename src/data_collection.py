@@ -133,11 +133,10 @@ class TechportData(Dataset):
             .pipe(encode_locations)
             .pipe(encode_status)
             .pipe(encode_tx_level)
-            .pipe(normalize_views, 0, 1)
+            .pipe(modify_views, 0, 1)
             .pipe(modify_trl)
             .pipe(clean_titles_column)
         )
-        df['LOG_VIEW_COUNT'] = np.log(df['VIEW_COUNT'] + 1)
         return df
 
 

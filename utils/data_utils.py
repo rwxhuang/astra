@@ -98,7 +98,7 @@ def encode_status(df):
     return df
 
 
-def normalize_views(dataframe, lower, upper):
+def modify_views(df, lower, upper):
     '''
     dataframe: takes in a dateframe
     lower: lower bound min
@@ -110,10 +110,10 @@ def normalize_views(dataframe, lower, upper):
     scaler = MinMaxScaler(feature_range=(lower, upper))
 
     # apply scaler to col
-    dataframe['VIEW_COUNT_NORMALIZED'] = scaler.fit_transform(
-        dataframe[['VIEW_COUNT']])
-
-    return dataframe
+    df['VIEW_COUNT_NORMALIZED'] = scaler.fit_transform(
+        df[['VIEW_COUNT']])
+    df['LOG_VIEW_COUNT'] = np.log(df['VIEW_COUNT'] + 1)
+    return df
 
 
 def encode_tx_level(dataframe):
@@ -200,7 +200,12 @@ def modify_trl(df):
         if pd.isna(row['CURRENT_TRL']) and pd.notna(row['START_TRL']) and pd.notna(row['END_TRL']):
             row['CURRENT_TRL'] = (row['START_TRL'] + row['END_TRL']) // 2
 
-        # Assign default ranges for missing START_TRL and END_TRL based on CURRENT_TRL
+        # If END_TRL is only non-NaN, send START_TRL AND CURRENT_TRL to END_TRL
+        if pd.isna(row['CURRENT_TRL']) and pd.isna(row['START_TRL']) and pd.notna(row['END_TRL']):
+            row['START_TRL'] = row['END_TRL']
+            row['CURRENT_TRL'] = row['END_TRL']
+
+            # Assign default ranges for missing START_TRL and END_TRL based on CURRENT_TRL
         trl_ranges = [(1, 3), (4, 6), (7, 9)]
         for start, end in trl_ranges:
             if start <= row['CURRENT_TRL'] <= end:
