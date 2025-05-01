@@ -28,6 +28,7 @@ class TechportScraper:
         self.search_input = search_input
 
         options = Options()
+        options.add_argument("--disable-gpu")
         options.add_argument("--headless")
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager(
             chrome_type=ChromeType.CHROMIUM).install()), options=options)
