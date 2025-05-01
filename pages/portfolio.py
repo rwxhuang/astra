@@ -151,7 +151,8 @@ with st.spinner("*Loading modules...*", show_time=True):
             ***
             """
         )
-        drl_investments = get_drl_investments(df)
-        fig_drl_pie = get_drl_pie(drl_investments, labels)
+        # drl_investments = get_drl_investments(df)
+        # fig_drl_pie = get_drl_pie(drl_investments, labels)
 
-        st.plotly_chart(fig_drl_pie, use_container_width=True)
+        # st.plotly_chart(fig_drl_pie, use_container_width=True)
+        st.warning('Coming soon: to be implemented', icon="⚠️")
