@@ -3,7 +3,27 @@ import numpy as np
 import math
 import re
 import pandas as pd
+import streamlit as st
+from selenium import webdriver
 from sklearn.preprocessing import MinMaxScaler
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.core.os_manager import ChromeType
+from webdriver_manager.chrome import ChromeDriverManager
+
+options = Options()
+options.add_argument("--disable-gpu")
+options.add_argument("--headless")
+
+
+@st.cache_resource
+def get_driver():
+    return webdriver.Chrome(
+        service=Service(
+            ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+        ),
+        options=options,
+    )
 
 
 def extract_tx_level(dataframe):

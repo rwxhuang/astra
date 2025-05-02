@@ -8,10 +8,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from st_files_connection import FilesConnection
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.core.os_manager import ChromeType
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from utils.data_utils import *
@@ -26,12 +22,7 @@ class TechportScraper:
         :param search_input: The search input for the Techport website
         """
         self.search_input = search_input
-
-        options = Options()
-        options.add_argument("--disable-gpu")
-        options.add_argument("--headless")
-        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager(
-            chrome_type=ChromeType.CHROMIUM).install()), options=options)
+        self.driver = get_driver()
 
     def _wait_by_class(self, class_name):
         WebDriverWait(self.driver, 5).until(
