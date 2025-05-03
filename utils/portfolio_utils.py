@@ -91,7 +91,7 @@ def get_df(id):
     def fetch_df_from_s3():
         conn = st.connection('s3', type=FilesConnection)
         return merge_dfs(
-            TechportData(conn).load_processed_data(),
+            TechportData().load_processed_data(),
             SBIRData(conn).load_processed_data()
         )
     df = fetch_df_from_s3()

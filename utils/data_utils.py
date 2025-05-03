@@ -96,7 +96,8 @@ def encode_locations(dataframe):
 
             # for each location, update it's spot in the vector to 1
             for loc in location_list:
-                vector[location_to_index[loc]] = 1
+                if loc:
+                    vector[location_to_index[loc]] = 1
 
         return vector
 
