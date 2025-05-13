@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import time
+import boto3
 
 from abc import ABC, abstractmethod
 from selenium import webdriver
@@ -91,29 +92,43 @@ class TechportData(Dataset):
     """
     _instance = None
 
-    def __init__(self, conn):
-        self.conn = conn
-        self.bucket = "astra-data-bucket"
-        self.file_name = "techport_api_all.csv"
+    def __init__(self, table_name="TechportProjects"):
+
+        self.dynamodb = boto3.resource(
+            "dynamodb",
+            region_name=st.secrets["AWS_REGION"],
+            aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
+            aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"]
+        )
+        self.table = self.dynamodb.Table(table_name)
 
     def load_data(self):
-        '''
-        data for users in streamlit from techport scraped data
-        '''
-        with self.conn.open(self.bucket + '/' + self.file_name, "rb", encoding='utf-8') as f:
-            df = pd.read_csv(f)
-        df.set_index('PROJECT_ID', inplace=True)
+        items = []
+        response = self.table.scan() 
+        items.extend(response.get("Items", []))
 
-        # make sure date cols are datetime types
-        date_time_cols = ['START_DATE', 'END_DATE', 'LAST_MODIFIED']
-        for col in date_time_cols:
-            df[col] = pd.to_datetime(df[col])
+        while "LastEvaluatedKey" in response:
+            response = self.table.scan(ExclusiveStartKey=response["LastEvaluatedKey"])
+            items.extend(response.get("Items", []))
 
-        # make tx level readable
+        df = pd.DataFrame(items)
+        df.to_csv('./astra_data/debugging_dynamo_to_csv.csv', index=False)        
+
+
+        df.set_index("PROJECT_ID", inplace=True)
+
+        for col in ['START_DATE', 'END_DATE', 'LAST_MODIFIED']:
+            if col in df.columns:
+                df[col] = pd.to_datetime(df[col])
+
         df = extract_tx_level(df)
-        # extract start and end year as new columns
-        df['START_YEAR'] = pd.to_datetime(df['START_DATE']).dt.year
-        df['END_YEAR'] = pd.to_datetime(df['END_DATE']).dt.year
+        df['START_YEAR'] = df['START_DATE'].dt.year
+        df['END_YEAR'] = df['END_DATE'].dt.year
+
+        df['VIEW_COUNT'] = df['VIEW_COUNT'].astype(int)
+        df['START_TRL'] = df['VIEW_COUNT'].astype(int)
+        df['CURRENT_TRL'] = df['VIEW_COUNT'].astype(int)
+        df['END_TRL'] = df['VIEW_COUNT'].astype(int)
 
         return df
 
@@ -199,7 +214,7 @@ def get_astra_data(search_input):
     conn = st.connection('s3', type=FilesConnection)
     # TODO: merge TechportData(conn).load_data() with SBIRData(conn).load_data()
     techport_and_sbir = pd.merge(
-        TechportData(conn).load_data(),
+        TechportData().load_data(),
         SBIRData(conn).load_data(),
         on=['PROJECT_TITLE', 'START_YEAR', 'END_YEAR'],
         how='left'
